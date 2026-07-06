@@ -1,0 +1,389 @@
+/* ==========================================================================
+   관리자 공통 셸 (사이드바 + 상단바)
+   각 admin 페이지에 코로케이션으로 중복 배치
+   ========================================================================== */
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+.admin-sidebar {
+  width: 232px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, var(--color-primary-dark), #40260f 130%);
+  color: rgba(255, 255, 255, 0.92);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.admin-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.admin-sidebar__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 1.1rem;
+}
+
+.admin-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.admin-sidebar__nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.68);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.admin-sidebar__nav a .icon {
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.admin-sidebar__nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.admin-sidebar__nav a.is-active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-weight: 600;
+}
+
+.admin-sidebar__foot {
+  margin-top: auto;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.admin-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-bg);
+}
+
+.admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(247, 243, 237, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-5) var(--space-7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.admin-topbar__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-topbar__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.admin-topbar__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.admin-main {
+  max-width: 1080px;
+  padding: var(--space-6) var(--space-7) var(--space-7);
+}
+
+/* ==========================================================================
+   버튼
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn--ghost {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.btn--ghost:hover {
+  background: var(--color-surface-soft);
+  color: var(--color-text);
+}
+
+.btn--danger {
+  background: transparent;
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.btn--danger:hover {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+.btn--sm {
+  padding: 6px var(--space-3);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   통계 카드
+   ========================================================================== */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-card__label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.stat-card__value {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+/* ==========================================================================
+   목록 페이지 헤더 / 필터
+   ========================================================================== */
+
+.page-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.page-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.filter-bar {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+}
+
+.filter-chip {
+  padding: 6px var(--space-4);
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-chip:hover {
+  color: var(--color-text);
+}
+
+.filter-chip.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ==========================================================================
+   테이블
+   ========================================================================== */
+
+.menu-table-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.menu-table th,
+.menu-table td {
+  text-align: left;
+  padding: var(--space-3) var(--space-5);
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.menu-table th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--color-surface-soft);
+}
+
+.menu-table tbody tr {
+  transition: background 0.12s ease;
+}
+
+.menu-table tbody tr:hover {
+  background: var(--color-surface-soft);
+}
+
+.menu-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.menu-table__thumb-cell {
+  width: 64px;
+}
+
+.menu-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.menu-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.menu-table__name-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.menu-table__name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.menu-table__desc {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px var(--space-3);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.badge--ok {
+  background: rgba(47, 125, 70, 0.12);
+  color: var(--color-success);
+}
+
+.badge--soldout {
+  background: rgba(194, 65, 53, 0.12);
+  color: var(--color-danger);
+}
+
+.badge--signature {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.badge--muted {
+  background: var(--color-surface-soft);
+  color: var(--color-text-muted);
+}
+
+.row-actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.empty-state {
+  padding: var(--space-7);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}

@@ -1,0 +1,4 @@
+/* create.css 의 폼 스타일을 그대로 재사용, 수정 화면 전용 보정만 배치 */
+.menu-form[hidden] {
+  display: none;
+}
