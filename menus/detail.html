@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Detail | new-cafe</title>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="./detail.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">new-cafe</a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="./list.html">Menu</a>
+          <a href="../basket/list.html">Basket <span id="cartCount">0</span></a>
+          <a href="../orders/list.html">Orders</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container detail-page">
+      <a class="back-link" href="./list.html">Back to menu</a>
+
+      <section id="detailContent" class="detail-layout" aria-live="polite"></section>
+      <p id="notFoundMessage" class="not-found" hidden>Menu item not found.</p>
+    </main>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="./detail.js"></script>
+  </body>
+</html>
