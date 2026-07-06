@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>메뉴 수정 - 관리자</title>
+  <link rel="stylesheet" href="../../css/variables.css" />
+  <link rel="stylesheet" href="list.css" />
+  <link rel="stylesheet" href="create.css" />
+  <link rel="stylesheet" href="edit.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <span class="admin-sidebar__brand-mark">☕</span>
+        New Cafe Admin
+      </div>
+      <nav class="admin-sidebar__nav">
+        <a href="../index.html"><span class="icon">📊</span>대시보드</a>
+        <a href="list.html" class="is-active"><span class="icon">🍰</span>메뉴 관리</a>
+        <a href="../orders/list.html"><span class="icon">🧾</span>주문 관리</a>
+      </nav>
+      <p class="admin-sidebar__foot">© New Cafe</p>
+    </aside>
+
+    <div class="admin-content">
+      <header class="admin-topbar">
+        <div class="admin-topbar__heading">
+          <span class="admin-topbar__eyebrow">Menu Management</span>
+          <h1 class="admin-topbar__title">메뉴 수정</h1>
+        </div>
+        <a href="list.html" class="btn btn--ghost">← 목록으로</a>
+      </header>
+
+      <main class="admin-main">
+        <form id="menuForm" class="menu-form" hidden>
+          <div class="menu-form__grid">
+            <div class="menu-form__fields">
+              <div class="form-group">
+                <label for="name">메뉴 이름</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="categoryId">카테고리</label>
+                <select id="categoryId" name="categoryId" required></select>
+              </div>
+
+              <div class="form-group">
+                <label for="price">가격 (원)</label>
+                <input type="number" id="price" name="price" min="0" step="100" required />
+              </div>
+
+              <div class="form-group">
+                <label for="description">설명</label>
+                <textarea id="description" name="description" rows="3"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="image">이미지 URL</label>
+                <input type="text" id="image" name="image" />
+              </div>
+
+              <div class="form-group form-group--row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="isSignature" name="isSignature" />
+                  시그니처 메뉴
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="isAvailable" name="isAvailable" />
+                  판매 중
+                </label>
+              </div>
+            </div>
+
+            <div class="menu-form__preview">
+              <p class="menu-form__preview-label">사진 미리보기</p>
+              <div class="menu-form__preview-box" id="previewBox">☕</div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <a href="list.html" class="btn btn--ghost">취소</a>
+            <button type="submit" class="btn btn--primary">저장하기</button>
+          </div>
+        </form>
+
+        <p class="empty-state" id="notFound" hidden>메뉴를 찾을 수 없습니다.</p>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../js/data.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="edit.js"></script>
+</body>
+</html>

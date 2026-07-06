@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>메뉴 상세 - 관리자</title>
+  <link rel="stylesheet" href="../../css/variables.css" />
+  <link rel="stylesheet" href="list.css" />
+  <link rel="stylesheet" href="detail.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar__brand">
+        <span class="admin-sidebar__brand-mark">☕</span>
+        New Cafe Admin
+      </div>
+      <nav class="admin-sidebar__nav">
+        <a href="../index.html"><span class="icon">📊</span>대시보드</a>
+        <a href="list.html" class="is-active"><span class="icon">🍰</span>메뉴 관리</a>
+        <a href="../orders/list.html"><span class="icon">🧾</span>주문 관리</a>
+      </nav>
+      <p class="admin-sidebar__foot">© New Cafe</p>
+    </aside>
+
+    <div class="admin-content">
+      <header class="admin-topbar">
+        <div class="admin-topbar__heading">
+          <span class="admin-topbar__eyebrow">Menu Management</span>
+          <h1 class="admin-topbar__title">메뉴 상세</h1>
+        </div>
+        <a href="list.html" class="btn btn--ghost">← 목록으로</a>
+      </header>
+
+      <main class="admin-main">
+        <div id="detailContent"></div>
+        <p class="empty-state" id="notFound" hidden>메뉴를 찾을 수 없습니다.</p>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../js/data.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="detail.js"></script>
+</body>
+</html>
