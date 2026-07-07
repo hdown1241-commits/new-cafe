@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basket | new-cafe</title>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="./list.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">new-cafe</a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="../menus/list.html">Menu</a>
+          <a href="./list.html" aria-current="page">Basket <span id="cartCount">0</span></a>
+          <a href="../orders/list.html">Orders</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container basket-page">
+      <div class="basket-heading">
+        <p class="eyebrow">Your Order</p>
+        <h1>Basket</h1>
+      </div>
+
+      <section class="basket-layout" aria-live="polite">
+        <div id="basketItems" class="basket-items"></div>
+        <aside class="basket-summary">
+          <h2>Summary</h2>
+          <div class="summary-row">
+            <span>Items</span>
+            <span id="summaryCount">0</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span id="summaryTotal">₩0</span>
+          </div>
+          <button id="clearButton" class="clear-button" type="button">Clear basket</button>
+        </aside>
+      </section>
+
+      <p id="emptyMessage" class="empty-message" hidden>Your basket is empty. Add something from the menu.</p>
+    </main>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="./list.js"></script>
+  </body>
+</html>
