@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | new-cafe</title>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="admin-shell">
+      <aside class="admin-sidebar">
+        <div class="admin-sidebar__brand">
+          <span class="admin-sidebar__brand-mark">NC</span>
+          New Cafe Admin
+        </div>
+        <nav class="admin-sidebar__nav" aria-label="Admin navigation">
+          <a href="./index.html" class="is-active"><span class="icon">DB</span>Dashboard</a>
+          <a href="./menus/list.html"><span class="icon">MN</span>Menu management</a>
+          <a href="./orders/list.html"><span class="icon">OR</span>Order management</a>
+        </nav>
+        <p class="admin-sidebar__foot">new-cafe operations</p>
+      </aside>
+
+      <div class="admin-content">
+        <header class="admin-topbar">
+          <div class="admin-topbar__heading">
+            <span class="admin-topbar__eyebrow">Overview</span>
+            <h1 class="admin-topbar__title">Dashboard</h1>
+          </div>
+          <a href="../index.html" class="btn btn--ghost">Customer home</a>
+        </header>
+
+        <main class="admin-main">
+          <section id="statGrid" class="stat-grid" aria-label="Dashboard stats"></section>
+
+          <section class="dashboard-grid">
+            <article class="dashboard-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="panel-eyebrow">Menus</p>
+                  <h2>Menu status</h2>
+                </div>
+                <a href="./menus/list.html" class="btn btn--primary">Manage menus</a>
+              </div>
+              <div id="menuSummary" class="summary-list"></div>
+            </article>
+
+            <article class="dashboard-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="panel-eyebrow">Orders</p>
+                  <h2>Recent orders</h2>
+                </div>
+                <a href="./orders/list.html" class="btn btn--primary">Manage orders</a>
+              </div>
+              <div id="recentOrders" class="order-list"></div>
+            </article>
+          </section>
+
+          <section class="quick-actions" aria-label="Quick actions">
+            <a href="./menus/create.html" class="quick-action">
+              <span>Add menu</span>
+              <strong>Create a new menu item</strong>
+            </a>
+            <a href="./menus/list.html" class="quick-action">
+              <span>Edit menu</span>
+              <strong>Update availability or prices</strong>
+            </a>
+            <a href="./orders/list.html" class="quick-action">
+              <span>Orders</span>
+              <strong>Review order status</strong>
+            </a>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+      if (!window.CafeUtils.requireAdminAccess()) {
+        location.href = "../index.html";
+      }
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>
