@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주문 상세 | new-cafe</title>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="./detail.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">new-cafe</a>
+        <nav class="header-nav" aria-label="주요 메뉴">
+          <a href="../menus/list.html">메뉴</a>
+          <a href="../basket/list.html">장바구니 <span id="cartCount">0</span></a>
+          <a href="./list.html">주문 내역</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container detail-page">
+      <a class="back-link" href="./list.html">주문 내역으로 돌아가기</a>
+      <section id="orderDetail" class="detail-panel" aria-live="polite"></section>
+      <p id="notFoundMessage" class="not-found" hidden>주문 내역을 찾을 수 없습니다.</p>
+    </main>
+
+    <script src="../js/utils.js"></script>
+    <script src="./detail.js"></script>
+  </body>
+</html>

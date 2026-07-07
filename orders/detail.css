@@ -1,0 +1,215 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(247, 243, 237, 0.94);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  gap: var(--space-4);
+}
+
+.brand {
+  color: var(--color-primary-dark);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.header-nav a {
+  min-height: 40px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.header-nav a:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.detail-page {
+  padding: var(--space-6) 0 var(--space-7);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  margin-bottom: var(--space-4);
+  color: var(--color-primary-dark);
+  font-weight: 800;
+}
+
+.detail-panel {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.detail-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-heading p {
+  margin: 0 0 var(--space-2);
+  color: var(--color-accent);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.detail-heading h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 0;
+}
+
+.status-badge {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.status-badge.ready {
+  background: rgba(47, 111, 94, 0.16);
+  color: var(--color-accent);
+}
+
+.status-badge.completed {
+  background: rgba(47, 125, 70, 0.16);
+  color: var(--color-success);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.info-item {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+}
+
+.info-item span {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+.info-item strong {
+  color: var(--color-text);
+}
+
+.items-section h2,
+.memo-section h2 {
+  margin: 0 0 var(--space-3);
+  font-size: 1.2rem;
+}
+
+.item-list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-soft);
+}
+
+.order-item h3 {
+  margin: 0 0 var(--space-1);
+  font-size: 1rem;
+}
+
+.order-item p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.item-price {
+  color: var(--color-primary-dark);
+  font-weight: 900;
+}
+
+.memo-section p {
+  margin: 0;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+  color: var(--color-text-muted);
+}
+
+.total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.total-row strong {
+  color: var(--color-primary-dark);
+}
+
+.not-found {
+  padding: var(--space-6);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .header-inner,
+  .detail-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header-nav {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .info-grid,
+  .order-item {
+    grid-template-columns: 1fr;
+  }
+}
