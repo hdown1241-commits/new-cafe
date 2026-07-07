@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>new-cafe</title>
+    <link rel="stylesheet" href="./css/variables.css" />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./index.html" aria-current="page">new-cafe</a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="./menus/list.html">Menu</a>
+          <a href="./basket/list.html">Basket <span id="cartCount">0</span></a>
+          <a href="./orders/list.html">Orders</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <p class="eyebrow">Freshly brewed</p>
+          <h1>new-cafe</h1>
+          <p class="hero-copy">
+            Simple cafe ordering for warm drinks, desserts, basket review, and order tracking.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./menus/list.html">Browse menu</a>
+            <a class="btn btn-secondary" href="./orders/list.html">View orders</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="container quick-links" aria-label="Quick links">
+        <a class="quick-card" href="./menus/list.html">
+          <span>01</span>
+          <strong>Menu</strong>
+          <p>Explore drinks and desserts.</p>
+        </a>
+        <a class="quick-card" href="./basket/list.html">
+          <span>02</span>
+          <strong>Basket</strong>
+          <p>Review selected items.</p>
+        </a>
+        <a class="quick-card" href="./orders/list.html">
+          <span>03</span>
+          <strong>Orders</strong>
+          <p>Check pickup progress.</p>
+        </a>
+      </section>
+
+      <section class="container signature-section">
+        <div class="section-heading">
+          <p class="eyebrow">Recommended</p>
+          <h2>Signature menu</h2>
+        </div>
+        <div id="signatureGrid" class="signature-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="./js/data.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
