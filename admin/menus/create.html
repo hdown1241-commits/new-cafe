@@ -90,6 +90,11 @@
 
   <script src="../../js/data.js"></script>
   <script src="../../js/utils.js"></script>
+  <script>
+    if (!window.CafeUtils.requireAdminAccess()) {
+      location.href = "../../menus/list.html";
+    }
+  </script>
   <script src="create.js"></script>
 </body>
 </html>

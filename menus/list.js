@@ -10,6 +10,7 @@ const resultTitle = document.querySelector("#resultTitle");
 const resultCount = document.querySelector("#resultCount");
 const emptyMessage = document.querySelector("#emptyMessage");
 const cartCount = document.querySelector("#cartCount");
+const adminLink = document.querySelector("#adminLink");
 
 const getCategoryName = (categoryId) =>
   window.CafeData.categories.find((category) => category.id === categoryId)?.name || "Menu";
@@ -92,6 +93,13 @@ categoryTabs.addEventListener("click", (event) => {
 searchInput.addEventListener("input", (event) => {
   state.searchTerm = event.target.value;
   renderMenus();
+});
+
+adminLink.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (window.CafeUtils.requireAdminAccess()) {
+    window.location.href = adminLink.getAttribute("href");
+  }
 });
 
 renderCategoryTabs();
