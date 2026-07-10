@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Management | new-cafe</title>
+    <link rel="stylesheet" href="../../css/variables.css" />
+    <link rel="stylesheet" href="./list.css" />
+  </head>
+  <body>
+    <div class="admin-shell">
+      <aside class="admin-sidebar">
+        <div class="admin-sidebar__brand">
+          <span class="admin-sidebar__brand-mark">NC</span>
+          New Cafe Admin
+        </div>
+        <nav class="admin-sidebar__nav" aria-label="Admin navigation">
+          <a href="../index.html"><span class="icon">DB</span>Dashboard</a>
+          <a href="../menus/list.html"><span class="icon">MN</span>Menu management</a>
+          <a href="./list.html" class="is-active"><span class="icon">OR</span>Order management</a>
+        </nav>
+        <p class="admin-sidebar__foot">new-cafe operations</p>
+      </aside>
+
+      <div class="admin-content">
+        <header class="admin-topbar">
+          <div class="admin-topbar__heading">
+            <span class="admin-topbar__eyebrow">Orders</span>
+            <h1 class="admin-topbar__title">Order management</h1>
+          </div>
+          <a href="../index.html" class="btn btn--ghost">Dashboard</a>
+        </header>
+
+        <main class="admin-main">
+          <section class="stat-grid" aria-label="Order stats">
+            <article class="stat-card">
+              <p class="stat-card__label">Total orders</p>
+              <p id="totalOrders" class="stat-card__value">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-card__label">Active orders</p>
+              <p id="activeOrders" class="stat-card__value">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-card__label">Ready orders</p>
+              <p id="readyOrders" class="stat-card__value">0</p>
+            </article>
+            <article class="stat-card">
+              <p class="stat-card__label">Revenue</p>
+              <p id="totalRevenue" class="stat-card__value">0</p>
+            </article>
+          </section>
+
+          <section class="orders-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="panel-eyebrow">Queue</p>
+                <h2>Order list</h2>
+              </div>
+              <select id="statusFilter" class="status-filter" aria-label="Filter by status">
+                <option value="all">All statuses</option>
+                <option value="preparing">Preparing</option>
+                <option value="ready">Ready</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+
+            <div class="table-wrap">
+              <table class="orders-table">
+                <thead>
+                  <tr>
+                    <th>Order</th>
+                    <th>Pickup name</th>
+                    <th>Status</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Ordered at</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="orderTableBody"></tbody>
+              </table>
+              <p id="emptyState" class="empty-state" hidden>No orders match this filter.</p>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../../js/utils.js"></script>
+    <script>
+      if (!window.CafeUtils.requireAdminAccess()) {
+        location.href = "../../index.html";
+      }
+    </script>
+    <script src="./list.js"></script>
+  </body>
+</html>
