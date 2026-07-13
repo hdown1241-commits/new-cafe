@@ -58,6 +58,9 @@ const renderMenus = () => {
     .map(
       (menu) => `
         <article class="menu-card">
+          <a class="menu-card-image" href="./detail.html?id=${menu.id}">
+            <img src="${menu.image}" alt="${menu.name}" loading="lazy" />
+          </a>
           <div>
             <div class="menu-card-header">
               <h3>${menu.name}</h3>

@@ -62,10 +62,8 @@
 
 .menu-visual {
   min-height: 460px;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background:
-    linear-gradient(145deg, rgba(36, 27, 20, 0.1), rgba(123, 79, 47, 0.28)),
-    url("https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80");
   background-position: center;
   background-size: cover;
   box-shadow: var(--shadow-md);

@@ -56,8 +56,10 @@
 
 .menu-hero {
   min-height: 280px;
+  position: relative;
+  overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(82, 28, 52, 0.82), rgba(217, 95, 147, 0.28)),
+    linear-gradient(90deg, rgba(93, 30, 60, 0.8), rgba(217, 95, 147, 0.14)),
     var(--hero-photo-bg);
   background-position: center;
   background-size: cover;
@@ -169,12 +171,33 @@
 
 .menu-card {
   display: grid;
-  min-height: 260px;
-  padding: var(--space-4);
+  overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   box-shadow: var(--shadow-sm);
+}
+
+.menu-card > div {
+  padding: var(--space-4);
+}
+
+.menu-card-image {
+  display: block;
+  overflow: hidden;
+  background: var(--color-primary-soft);
+}
+
+.menu-card-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: saturate(1.06) brightness(1.04);
+  transition: transform 0.18s ease;
+}
+
+.menu-card:hover .menu-card-image img {
+  transform: scale(1.035);
 }
 
 .menu-card-header {

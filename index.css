@@ -42,15 +42,28 @@
 
 .hero {
   min-height: 68vh;
+  position: relative;
+  overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(82, 28, 52, 0.82), rgba(217, 95, 147, 0.24)),
-    url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1800&q=80");
+    linear-gradient(90deg, rgba(93, 30, 60, 0.78), rgba(217, 95, 147, 0.12)),
+    var(--hero-photo-bg);
   background-position: center;
   background-size: cover;
   color: #fff;
 }
 
+.hero::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 42%;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(0deg, rgba(255, 241, 247, 0.42), transparent);
+}
+
 .hero-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   align-content: center;
   min-height: 68vh;
@@ -189,6 +202,7 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
   background: var(--color-primary-soft);
+  filter: saturate(1.06) brightness(1.03);
 }
 
 .menu-card-body {

@@ -20,7 +20,7 @@ const renderDetail = () => {
   }
 
   detailContent.innerHTML = `
-    <div class="menu-visual" role="img" aria-label="${menu.name}"></div>
+    <div class="menu-visual" style="background-image: linear-gradient(145deg, rgba(255, 216, 232, 0.16), rgba(142, 53, 93, 0.22)), url('${menu.image}')" role="img" aria-label="${menu.name}"></div>
     <article class="detail-panel">
       <p class="category-name">${getCategoryName(menu.categoryId)}</p>
       <h1>${menu.name}</h1>

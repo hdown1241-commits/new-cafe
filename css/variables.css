@@ -13,6 +13,7 @@
   --color-success: #2f7d46;
   --photo-bg: url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1800&q=80");
   --hero-photo-bg: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1800&q=80");
+  --photo-veil: linear-gradient(135deg, rgba(255, 239, 247, 0.88), rgba(255, 250, 253, 0.68));
 
   --shadow-sm: 0 2px 12px rgba(142, 53, 93, 0.12);
   --shadow-md: 0 10px 30px rgba(142, 53, 93, 0.18);
@@ -45,7 +46,7 @@ body {
   min-height: 100%;
   margin: 0;
   background:
-    linear-gradient(135deg, rgba(255, 239, 247, 0.9), rgba(255, 248, 251, 0.74)),
+    var(--photo-veil),
     var(--photo-bg);
   background-attachment: fixed;
   background-position: center;
