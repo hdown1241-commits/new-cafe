@@ -19,7 +19,7 @@ const seedOrders = [
     id: "ORD-1003",
     orderedAt: "2026-07-06 13:20",
     status: "preparing",
-    pickupName: "Customer",
+    pickupName: "임재현",
     items: [
       { name: "Americano", price: 4500, quantity: 1 },
       { name: "Basque Cheesecake", price: 6800, quantity: 1 },
@@ -30,7 +30,7 @@ const seedOrders = [
     id: "ORD-1002",
     orderedAt: "2026-07-06 12:05",
     status: "ready",
-    pickupName: "Customer",
+    pickupName: "임재현",
     items: [{ name: "Cafe Latte", price: 5200, quantity: 2 }],
     memo: "",
   },
@@ -38,7 +38,7 @@ const seedOrders = [
     id: "ORD-1001",
     orderedAt: "2026-07-05 18:40",
     status: "completed",
-    pickupName: "Customer",
+    pickupName: "임재현",
     items: [{ name: "Americano", price: 4500, quantity: 1 }],
     memo: "",
   },
@@ -87,7 +87,7 @@ const renderOrders = () => {
       (order) => `
         <tr>
           <td><a class="order-id" href="./detail.html?id=${order.id}">${order.id}</a></td>
-          <td>${order.pickupName || "Customer"}</td>
+          <td>${order.pickupName || "임재현"}</td>
           <td><span class="status-badge ${order.status}">${statusLabels[order.status] || order.status}</span></td>
           <td><span class="muted">${getOrderItemCount(order)} item(s)</span></td>
           <td>${window.CafeUtils.formatPrice(getOrderTotal(order))}</td>

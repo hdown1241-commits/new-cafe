@@ -15,7 +15,7 @@ const seedOrders = [
     id: "ORD-1003",
     orderedAt: "2026-07-06 13:20",
     status: "preparing",
-    pickupName: "Customer",
+    pickupName: "임재현",
     items: [
       { name: "Americano", price: 4500, quantity: 1 },
       { name: "Basque Cheesecake", price: 6800, quantity: 1 },
@@ -25,14 +25,14 @@ const seedOrders = [
     id: "ORD-1002",
     orderedAt: "2026-07-06 12:05",
     status: "ready",
-    pickupName: "Customer",
+    pickupName: "임재현",
     items: [{ name: "Cafe Latte", price: 5200, quantity: 2 }],
   },
   {
     id: "ORD-1001",
     orderedAt: "2026-07-05 18:40",
     status: "completed",
-    pickupName: "Customer",
+    pickupName: "임재현",
     items: [{ name: "Americano", price: 4500, quantity: 1 }],
   },
 ];

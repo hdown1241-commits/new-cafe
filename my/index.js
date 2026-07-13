@@ -3,8 +3,8 @@ const CART_STORAGE_KEY = "new-cafe-cart";
 const PROFILE_STORAGE_KEY = "new-cafe-profile";
 
 const DEFAULT_PROFILE = {
-  name: "박용우",
-  email: "parkyw@example.com",
+  name: "임재현",
+  email: "limjh@example.com",
   joinedAt: "2026.03.02",
 };
 
