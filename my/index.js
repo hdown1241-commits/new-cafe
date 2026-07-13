@@ -39,7 +39,15 @@ const readOrderCount = () => {
 const readProfile = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY));
-    if (stored && stored.name && stored.email) return stored;
+    if (stored && stored.name && stored.email) {
+      const migrated = {
+        ...stored,
+        name: stored.name === "박용우" ? DEFAULT_PROFILE.name : stored.name,
+        email: stored.email === "parkyw@example.com" ? DEFAULT_PROFILE.email : stored.email,
+      };
+      localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(migrated));
+      return migrated;
+    }
   } catch {
     // fall through to seed on malformed storage
   }

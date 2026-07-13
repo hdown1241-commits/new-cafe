@@ -25,14 +25,14 @@ const seedOrders = [
     id: "ORD-1002",
     orderedAt: "2026-07-06 12:05",
     status: "ready",
-    pickupName: "임재현",
+    pickupName: "김하은",
     items: [{ name: "Cafe Latte", price: 5200, quantity: 2 }],
   },
   {
     id: "ORD-1001",
     orderedAt: "2026-07-05 18:40",
     status: "completed",
-    pickupName: "임재현",
+    pickupName: "최서윤",
     items: [{ name: "Americano", price: 4500, quantity: 1 }],
   },
 ];
@@ -40,7 +40,18 @@ const seedOrders = [
 const readOrders = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY));
-    if (Array.isArray(stored) && stored.length > 0) return stored;
+    if (Array.isArray(stored) && stored.length > 0) {
+      const migrated = stored.map((order) => {
+        const seed = seedOrders.find((seedOrder) => seedOrder.id === order.id);
+        if (!seed) return order;
+        if (!order.pickupName || order.pickupName === "박용우" || order.pickupName === "임재현") {
+          return { ...order, pickupName: seed.pickupName };
+        }
+        return order;
+      });
+      localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(migrated));
+      return migrated;
+    }
   } catch {
     // Use seed data when order storage is empty or invalid.
   }
