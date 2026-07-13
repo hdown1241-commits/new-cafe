@@ -113,6 +113,27 @@ const renderAuthNav = () => {
   if (!nav || nav.dataset.authReady === "true") return;
 
   nav.dataset.authReady = "true";
+  let adminLink = nav.querySelector("#adminLink");
+
+  if (!adminLink && !window.location.pathname.includes("/admin/")) {
+    adminLink = document.createElement("a");
+    adminLink.href = `${APP_ROOT}admin/menus/list.html`;
+    adminLink.id = "adminLink";
+    adminLink.className = "admin-link";
+    adminLink.textContent = "Admin";
+    nav.appendChild(adminLink);
+  }
+
+  if (adminLink && !adminLink.dataset.adminReady) {
+    adminLink.dataset.adminReady = "true";
+    adminLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (requireAdminAccess()) {
+        window.location.href = adminLink.getAttribute("href");
+      }
+    });
+  }
+
   const authAction = document.createElement(isLoggedIn() ? "button" : "a");
   authAction.className = "auth-link";
 
