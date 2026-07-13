@@ -64,6 +64,7 @@ const renderMenus = () => {
   resultTitle.textContent = state.categoryId === "all" ? "전체 메뉴" : getCategoryName(state.categoryId);
   resultCount.textContent = `${menus.length}개`;
   emptyMessage.hidden = menus.length > 0;
+  menuGrid.classList.toggle("is-compact", state.categoryId !== "all" || state.searchTerm.trim().length > 0);
 
   menuGrid.innerHTML = menus
     .map(

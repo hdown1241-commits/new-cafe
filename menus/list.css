@@ -165,8 +165,12 @@
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 280px));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--space-4);
+}
+
+.menu-grid.is-compact {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 280px));
   justify-content: flex-start;
 }
 
