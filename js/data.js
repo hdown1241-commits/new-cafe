@@ -21,7 +21,7 @@ const CAFE_MENUS = [
   {
     id: 1,
     categoryId: "coffee",
-    name: "아메리카노",
+    name: "아메리카노 / Americano",
     description: "깔끔한 에스프레소에 뜨거운 물을 더한 커피",
     price: 4500,
     image:
@@ -32,7 +32,7 @@ const CAFE_MENUS = [
   {
     id: 2,
     categoryId: "coffee",
-    name: "카페 라떼",
+    name: "카페 라떼 / Cafe Latte",
     description: "에스프레소에 부드러운 스팀 밀크를 더한 커피",
     price: 5200,
     image: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg",
@@ -42,7 +42,7 @@ const CAFE_MENUS = [
   {
     id: 3,
     categoryId: "non-coffee",
-    name: "말차 라떼",
+    name: "말차 라떼 / Matcha Latte",
     description: "진한 말차와 우유가 어우러진 라떼",
     price: 5800,
     image: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Matcha_green_tea_latte_art.jpg",
@@ -52,7 +52,7 @@ const CAFE_MENUS = [
   {
     id: 4,
     categoryId: "tea",
-    name: "얼그레이 티",
+    name: "얼그레이 티 / Earl Grey Tea",
     description: "베르가못 향이 은은하게 감도는 홍차",
     price: 4800,
     image: "https://upload.wikimedia.org/wikipedia/commons/2/22/Cup_of_Earl_Gray.jpg",
@@ -62,7 +62,7 @@ const CAFE_MENUS = [
   {
     id: 5,
     categoryId: "dessert",
-    name: "바스크 치즈케이크",
+    name: "바스크 치즈케이크 / Basque Cheesecake",
     description: "표면을 그을려 진한 풍미를 더한 크리미한 치즈케이크",
     price: 6800,
     image:
@@ -73,7 +73,7 @@ const CAFE_MENUS = [
   {
     id: 6,
     categoryId: "non-coffee",
-    name: "Grapefruit Mango Coco / 자몽 망고 코코",
+    name: "자몽 망고 코코 / Grapefruit Mango Coco",
     description: "핑크 자몽과 망고 퓌레, 코코넛 크림을 블렌딩한 산뜻한 계절 음료",
     price: 6500,
     image: getDataAssetUrl("seasonal-mango.png"),
@@ -84,7 +84,7 @@ const CAFE_MENUS = [
   {
     id: 7,
     categoryId: "tea",
-    name: "Sea Salt Foam Black Tea / 씨솔트 폼 블랙티",
+    name: "씨솔트 폼 블랙티 / Sea Salt Foam Black Tea",
     description: "시원한 블랙티 위에 부드러운 씨솔트 크림 폼을 올린 티 메뉴",
     price: 5900,
     image: getDataAssetUrl("seasonal-tea.png"),
@@ -95,7 +95,7 @@ const CAFE_MENUS = [
   {
     id: 8,
     categoryId: "non-coffee",
-    name: "Light Yuja Lemon Blended / 라이트 유자 레몬 블렌디드",
+    name: "라이트 유자 레몬 블렌디드 / Light Yuja Lemon Blended",
     description: "유자와 레몬, 얼음을 함께 갈아 상큼하게 즐기는 골드빛 블렌디드",
     price: 6200,
     image: getDataAssetUrl("seasonal-yuja.png"),
@@ -106,7 +106,7 @@ const CAFE_MENUS = [
   {
     id: 9,
     categoryId: "non-coffee",
-    name: "Watermelon Juice Blended / 수박 주스 블렌디드",
+    name: "수박 주스 블렌디드 / Watermelon Juice Blended",
     description: "달콤한 수박과 얼음을 블렌딩한 핑크빛 계절 음료",
     price: 6100,
     image: getDataAssetUrl("seasonal-watermelon.png"),
@@ -126,6 +126,14 @@ const LEGACY_EN_TEXT = {
     name: "Basque Cheesecake",
     description: "Creamy cheesecake with a caramelized top.",
   },
+};
+
+const LEGACY_SEED_NAMES = {
+  1: ["Americano", "아메리카노", "Americano / 아메리카노"],
+  2: ["Cafe Latte", "카페 라떼", "Cafe Latte / 카페 라떼"],
+  3: ["Matcha Latte", "말차 라떼", "Matcha Latte / 말차 라떼"],
+  4: ["Earl Grey Tea", "얼그레이 티", "Earl Grey Tea / 얼그레이 티"],
+  5: ["Basque Cheesecake", "바스크 치즈케이크", "Basque Cheesecake / 바스크 치즈케이크"],
 };
 
 const MENUS_STORAGE_KEY = "new-cafe-menus";
@@ -150,6 +158,9 @@ const readMenus = () => {
         }
         if (legacy && menu.name === legacy.name) {
           next.name = seed ? seed.name : menu.name;
+        }
+        if (seed && LEGACY_SEED_NAMES[menu.id]?.includes(menu.name)) {
+          next.name = seed.name;
         }
         if (legacy && menu.description === legacy.description) {
           next.description = seed ? seed.description : menu.description;

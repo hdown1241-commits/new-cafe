@@ -4,7 +4,7 @@ const cartCount = document.querySelector("#cartCount");
 const fallbackMenus = [
   {
     id: 1,
-    name: "Americano / 아메리카노",
+    name: "아메리카노 / Americano",
     description: "깔끔한 에스프레소에 따뜻한 물을 더한 커피",
     price: 4500,
     image:
@@ -13,7 +13,7 @@ const fallbackMenus = [
   },
   {
     id: 2,
-    name: "Cafe Latte / 카페 라떼",
+    name: "카페 라떼 / Cafe Latte",
     description: "에스프레소에 부드러운 스팀 밀크를 더한 커피",
     price: 5200,
     image: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg",
@@ -21,7 +21,7 @@ const fallbackMenus = [
   },
   {
     id: 5,
-    name: "Basque Cheesecake / 바스크 치즈케이크",
+    name: "바스크 치즈케이크 / Basque Cheesecake",
     description: "진한 치즈 풍미와 그을린 윗면이 매력적인 디저트",
     price: 6800,
     image:

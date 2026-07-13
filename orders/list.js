@@ -23,8 +23,8 @@ const seedOrders = [
     status: "preparing",
     pickupName: "임재현",
     items: [
-      { name: "Americano / 아메리카노", price: 4500, quantity: 1 },
-      { name: "Basque Cheesecake / 바스크 치즈케이크", price: 6800, quantity: 1 },
+      { name: "아메리카노 / Americano", price: 4500, quantity: 1 },
+      { name: "바스크 치즈케이크 / Basque Cheesecake", price: 6800, quantity: 1 },
     ],
   },
   {
@@ -32,14 +32,14 @@ const seedOrders = [
     orderedAt: "2026-07-06 12:05",
     status: "ready",
     pickupName: "김하은",
-    items: [{ name: "Cafe Latte / 카페 라떼", price: 5200, quantity: 2 }],
+    items: [{ name: "카페 라떼 / Cafe Latte", price: 5200, quantity: 2 }],
   },
   {
     id: "ORD-1001",
     orderedAt: "2026-07-05 18:40",
     status: "completed",
     pickupName: "최서윤",
-    items: [{ name: "Americano / 아메리카노", price: 4500, quantity: 1 }],
+    items: [{ name: "아메리카노 / Americano", price: 4500, quantity: 1 }],
   },
 ];
 
@@ -50,10 +50,14 @@ const readOrders = () => {
       const migrated = stored.map((order) => {
         const seed = seedOrders.find((seedOrder) => seedOrder.id === order.id);
         if (!seed) return order;
-        if (!order.pickupName || order.pickupName === "박용우" || order.pickupName === "임재현") {
-          return { ...order, pickupName: seed.pickupName };
-        }
-        return order;
+        return {
+          ...order,
+          pickupName:
+            !order.pickupName || order.pickupName === "박용우" || order.pickupName === "임재현"
+              ? seed.pickupName
+              : order.pickupName,
+          items: seed.items,
+        };
       });
       localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(migrated));
       return migrated;
