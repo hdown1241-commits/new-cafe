@@ -183,15 +183,18 @@
 }
 
 .menu-card-image {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--color-primary-soft);
+  background: rgba(255, 241, 247, 0.72);
 }
 
 .menu-card-image img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   filter: saturate(1.06) brightness(1.04);
   transition: transform 0.18s ease;
 }
