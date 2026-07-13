@@ -12,6 +12,7 @@
   --color-danger: #c24135;
   --color-success: #2f7d46;
   --photo-bg: url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1800&q=80");
+  --hero-photo-bg: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1800&q=80");
 
   --shadow-sm: 0 2px 12px rgba(142, 53, 93, 0.12);
   --shadow-md: 0 10px 30px rgba(142, 53, 93, 0.18);
@@ -70,12 +71,26 @@ body::before {
 
 .site-header,
 .admin-topbar {
-  background: rgba(255, 243, 249, 0.88) !important;
+  background: rgba(255, 243, 249, 0.9) !important;
+  border-color: var(--color-border) !important;
+  box-shadow: 0 10px 28px rgba(142, 53, 93, 0.08);
 }
 
 .admin-content {
   background: rgba(255, 241, 247, 0.82) !important;
   backdrop-filter: blur(8px);
+}
+
+.admin-sidebar {
+  background:
+    linear-gradient(180deg, rgba(142, 53, 93, 0.96), rgba(217, 95, 147, 0.86)),
+    var(--photo-bg) !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+.admin-sidebar__brand-mark {
+  background: rgba(255, 255, 255, 0.22) !important;
 }
 
 .quick-card,
@@ -88,11 +103,45 @@ body::before {
 .dashboard-panel,
 .stat-card,
 .menu-table-wrap,
-.quick-action {
+.quick-action,
+.basket-summary,
+.basket-item,
+.order-card,
+.info-item,
+.account-actions {
   border-color: var(--color-border) !important;
   background: var(--color-surface) !important;
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(10px);
+}
+
+input,
+select,
+textarea {
+  border-color: var(--color-border) !important;
+  background: rgba(255, 255, 255, 0.86) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-primary) !important;
+  outline: 3px solid rgba(217, 95, 147, 0.18) !important;
+}
+
+button,
+.btn,
+.btn-primary,
+.btn--primary,
+.detail-link,
+.menu-link {
+  box-shadow: 0 8px 20px rgba(217, 95, 147, 0.16);
+}
+
+.badge,
+.status-badge {
+  background: var(--color-primary-soft) !important;
+  color: var(--color-primary-dark) !important;
 }
 
 a {

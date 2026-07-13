@@ -169,7 +169,7 @@
 
 .form-group input:focus {
   border-color: var(--color-primary);
-  outline: 3px solid rgba(123, 79, 47, 0.16);
+  outline: 3px solid rgba(217, 95, 147, 0.18);
 }
 
 .form-actions {

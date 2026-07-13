@@ -57,8 +57,8 @@
 .menu-hero {
   min-height: 280px;
   background:
-    linear-gradient(90deg, rgba(36, 27, 20, 0.86), rgba(36, 27, 20, 0.5)),
-    url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1600&q=80");
+    linear-gradient(90deg, rgba(82, 28, 52, 0.82), rgba(217, 95, 147, 0.28)),
+    var(--hero-photo-bg);
   background-position: center;
   background-size: cover;
   color: #fff;
@@ -114,7 +114,7 @@
 
 .search-field input:focus {
   border-color: var(--color-primary);
-  outline: 3px solid rgba(123, 79, 47, 0.16);
+  outline: 3px solid rgba(217, 95, 147, 0.18);
 }
 
 .category-tabs {
