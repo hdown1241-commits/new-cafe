@@ -43,8 +43,8 @@
 .hero {
   min-height: 68vh;
   background:
-    linear-gradient(90deg, rgba(36, 27, 20, 0.88), rgba(36, 27, 20, 0.36)),
-    url("./assets/hero-maid-cafe.svg");
+    linear-gradient(90deg, rgba(82, 28, 52, 0.82), rgba(217, 95, 147, 0.24)),
+    url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1800&q=80");
   background-position: center;
   background-size: cover;
   color: #fff;
@@ -99,6 +99,7 @@
 .btn-primary {
   background: var(--color-primary);
   color: #fff;
+  box-shadow: 0 10px 24px rgba(217, 95, 147, 0.24);
 }
 
 .btn-primary:hover {

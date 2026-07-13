@@ -1,19 +1,20 @@
 :root {
-  --color-bg: #f7f3ed;
-  --color-surface: #ffffff;
-  --color-surface-soft: #fbf8f3;
+  --color-bg: #fff1f7;
+  --color-surface: rgba(255, 255, 255, 0.88);
+  --color-surface-soft: rgba(255, 246, 250, 0.92);
   --color-text: #241b14;
-  --color-text-muted: #75695f;
-  --color-primary: #7b4f2f;
-  --color-primary-dark: #5f3920;
-  --color-primary-soft: #ead8c4;
-  --color-accent: #2f6f5e;
-  --color-border: #e5ddd3;
+  --color-text-muted: #7c6670;
+  --color-primary: #d95f93;
+  --color-primary-dark: #8e355d;
+  --color-primary-soft: #ffd8e8;
+  --color-accent: #b14d7c;
+  --color-border: rgba(222, 151, 180, 0.42);
   --color-danger: #c24135;
   --color-success: #2f7d46;
+  --photo-bg: url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1800&q=80");
 
-  --shadow-sm: 0 2px 8px rgba(36, 27, 20, 0.08);
-  --shadow-md: 0 8px 24px rgba(36, 27, 20, 0.12);
+  --shadow-sm: 0 2px 12px rgba(142, 53, 93, 0.12);
+  --shadow-md: 0 10px 30px rgba(142, 53, 93, 0.18);
 
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -39,12 +40,59 @@ html {
 }
 
 body {
+  position: relative;
   min-height: 100%;
   margin: 0;
-  background: var(--color-bg);
+  background:
+    linear-gradient(135deg, rgba(255, 239, 247, 0.9), rgba(255, 248, 251, 0.74)),
+    var(--photo-bg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.5;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 15% 18%, rgba(255, 145, 190, 0.22), transparent 24%),
+    radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.38), transparent 20%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: auto, auto, 34px 34px, 34px 34px;
+}
+
+.site-header,
+.admin-topbar {
+  background: rgba(255, 243, 249, 0.88) !important;
+}
+
+.admin-content {
+  background: rgba(255, 241, 247, 0.82) !important;
+  backdrop-filter: blur(8px);
+}
+
+.quick-card,
+.menu-card,
+.summary-card,
+.orders-panel,
+.basket-panel,
+.detail-panel,
+.profile-card,
+.dashboard-panel,
+.stat-card,
+.menu-table-wrap,
+.quick-action {
+  border-color: var(--color-border) !important;
+  background: var(--color-surface) !important;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
 }
 
 a {
