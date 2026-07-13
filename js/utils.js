@@ -128,7 +128,7 @@ const renderAuthNav = () => {
     adminLink.dataset.adminReady = "true";
     adminLink.addEventListener("click", (event) => {
       event.preventDefault();
-      if (requireAdminAccess()) {
+      if (requireAdminAccess({ forcePrompt: true })) {
         window.location.href = adminLink.getAttribute("href");
       }
     });
@@ -160,8 +160,9 @@ const ADMIN_SESSION_KEY = "new-cafe-admin-authed";
 
 const isAdminAuthenticated = () => sessionStorage.getItem(ADMIN_SESSION_KEY) === "true";
 
-const requireAdminAccess = () => {
-  if (isAdminAuthenticated()) return true;
+const requireAdminAccess = (options = {}) => {
+  const { forcePrompt = false } = options;
+  if (!forcePrompt && isAdminAuthenticated()) return true;
 
   const passcode = prompt("관리자 PIN을 입력하세요.");
   if (passcode === null) return false;
