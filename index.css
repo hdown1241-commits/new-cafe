@@ -127,24 +127,62 @@
 
 .seasonal-showcase {
   grid-area: menu;
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0px, 0.7vw, 8px);
   align-self: center;
   min-width: 0;
 }
 
-.seasonal-showcase img {
+.seasonal-card {
+  display: grid;
+  grid-template-rows: 250px auto;
+  gap: var(--space-1);
+  min-width: 0;
+  color: var(--color-primary-dark);
+  text-align: center;
+}
+
+.seasonal-card:hover {
+  transform: translateY(-2px);
+}
+
+.seasonal-photo {
   display: block;
   width: 100%;
-  max-height: 390px;
-  border-radius: 24px;
-  object-fit: cover;
-  object-position: center;
-  box-shadow: 0 20px 34px rgba(142, 53, 93, 0.18);
+  height: 250px;
+  border-radius: 18px;
+  background-image: url("./assets/seasonal-drinks-hero.png");
+  background-repeat: no-repeat;
+  background-size: 410% 100%;
+  box-shadow: 0 18px 24px rgba(142, 53, 93, 0.18);
   filter: saturate(1.06) brightness(1.03);
 }
 
-.seasonal-showcase:hover img {
-  transform: translateY(-2px);
+.seasonal-card--mango .seasonal-photo {
+  background-position: 0% center;
+}
+
+.seasonal-card--tea .seasonal-photo {
+  background-position: 33.3% center;
+}
+
+.seasonal-card--yuja .seasonal-photo {
+  background-position: 66.6% center;
+}
+
+.seasonal-card--watermelon .seasonal-photo {
+  background-position: 100% center;
+}
+
+.seasonal-card span:last-child {
+  min-height: 44px;
+  color: var(--color-primary-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.18;
+  padding: 0 var(--space-1);
+  text-transform: uppercase;
 }
 
 .btn {
@@ -321,11 +359,16 @@
   }
 
   .seasonal-showcase {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-top: var(--space-5);
   }
 
-  .seasonal-showcase img {
-    max-height: none;
+  .seasonal-card {
+    grid-template-rows: 170px auto;
+  }
+
+  .seasonal-photo {
+    height: 170px;
   }
 
   .hero,
