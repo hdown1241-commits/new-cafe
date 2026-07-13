@@ -58,6 +58,54 @@ const CAFE_MENUS = [
     isSignature: true,
     isAvailable: true,
   },
+  {
+    id: 6,
+    categoryId: "non-coffee",
+    name: "Grapefruit Mango Coco",
+    description: "Pink grapefruit, mango puree, and coconut cream blended for a bright seasonal drink.",
+    price: 6500,
+    image:
+      "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80",
+    isSignature: true,
+    isSeasonal: true,
+    isAvailable: true,
+  },
+  {
+    id: 7,
+    categoryId: "tea",
+    name: "Sea Salt Foam Black Tea",
+    description: "Iced black tea finished with a soft sea-salt cream foam.",
+    price: 5900,
+    image:
+      "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80",
+    isSignature: true,
+    isSeasonal: true,
+    isAvailable: true,
+  },
+  {
+    id: 8,
+    categoryId: "non-coffee",
+    name: "Light Yuja Lemon Blended",
+    description: "Yuja, lemon, and ice blended into a fresh golden summer cooler.",
+    price: 6200,
+    image:
+      "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=80",
+    isSignature: true,
+    isSeasonal: true,
+    isAvailable: true,
+  },
+  {
+    id: 9,
+    categoryId: "non-coffee",
+    name: "Watermelon Juice Blended",
+    description: "Sweet watermelon blended with ice for a vivid pink seasonal refresher.",
+    price: 6100,
+    image:
+      "https://images.unsplash.com/photo-1525385133512-2f3bdd039054?auto=format&fit=crop&w=900&q=80",
+    isSignature: true,
+    isSeasonal: true,
+    isAvailable: true,
+  },
 ];
 
 // 이전(영문) 시드 데이터 - localStorage 마이그레이션 판별용
@@ -74,6 +122,7 @@ const LEGACY_EN_TEXT = {
 
 const MENUS_STORAGE_KEY = "new-cafe-menus";
 const AMERICANO_RESTORE_KEY = "new-cafe-americano-restored-v1";
+const SEASONAL_MENUS_KEY = "new-cafe-seasonal-menus-added-v1";
 
 const isPlaceholderImage = (image) =>
   typeof image === "string" && image.startsWith("https://picsum.photos/");
@@ -103,13 +152,19 @@ const readMenus = () => {
       });
       const restoredAmericano = localStorage.getItem(AMERICANO_RESTORE_KEY) === "true";
       const hasAmericano = migrated.some((menu) => menu.id === 1);
+      const addedSeasonalMenus = localStorage.getItem(SEASONAL_MENUS_KEY) === "true";
+      const missingSeasonalMenus = addedSeasonalMenus
+        ? []
+        : CAFE_MENUS.filter((seed) => seed.isSeasonal && !migrated.some((menu) => menu.id === seed.id));
       const nextMenus = !restoredAmericano && !hasAmericano
         ? [{ ...CAFE_MENUS[0] }, ...migrated]
         : migrated;
+      const syncedMenus = [...nextMenus, ...missingSeasonalMenus.map((menu) => ({ ...menu }))];
 
       localStorage.setItem(AMERICANO_RESTORE_KEY, "true");
-      localStorage.setItem(MENUS_STORAGE_KEY, JSON.stringify(nextMenus));
-      return nextMenus;
+      localStorage.setItem(SEASONAL_MENUS_KEY, "true");
+      localStorage.setItem(MENUS_STORAGE_KEY, JSON.stringify(syncedMenus));
+      return syncedMenus;
     }
   } catch {
     // fall through to seed on malformed storage

@@ -41,7 +41,7 @@
 }
 
 .hero {
-  min-height: 68vh;
+  min-height: 620px;
   position: relative;
   overflow: hidden;
   background:
@@ -66,7 +66,7 @@
   z-index: 1;
   display: grid;
   align-content: center;
-  min-height: 68vh;
+  min-height: 620px;
   padding: var(--space-6) 0;
 }
 
@@ -97,6 +97,85 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   margin-top: var(--space-5);
+}
+
+.seasonal-showcase {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.8fr);
+  gap: var(--space-4);
+  align-items: center;
+  width: min(960px, 100%);
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: var(--radius-md);
+  background: rgba(255, 248, 251, 0.9);
+  box-shadow: var(--shadow-md);
+  color: var(--color-text);
+}
+
+.seasonal-heading {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.seasonal-heading span {
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.seasonal-heading strong {
+  color: #274428;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.seasonal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.seasonal-card {
+  display: grid;
+  grid-template-rows: 112px auto auto;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-2);
+  border: 1px solid rgba(222, 151, 180, 0.36);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--color-text);
+  text-align: center;
+}
+
+.seasonal-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.seasonal-card img {
+  width: 100%;
+  height: 112px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.seasonal-card span {
+  min-height: 38px;
+  color: #274428;
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.seasonal-card strong {
+  color: var(--color-primary-dark);
+  font-size: 0.9rem;
 }
 
 .btn {
@@ -256,6 +335,14 @@
 
   .quick-links {
     grid-template-columns: 1fr;
+  }
+
+  .seasonal-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .seasonal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero,

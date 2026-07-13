@@ -1,4 +1,5 @@
 const signatureGrid = document.querySelector("#signatureGrid");
+const seasonalGrid = document.querySelector("#seasonalGrid");
 const cartCount = document.querySelector("#cartCount");
 
 const fallbackMenus = [
@@ -71,9 +72,28 @@ const renderSignatures = () => {
     .join("");
 };
 
+const renderSeasonalMenus = () => {
+  const menus = getMenus();
+  const seasonalMenus = menus.filter((menu) => menu.isSeasonal && menu.isAvailable !== false).slice(0, 4);
+  const visibleMenus = seasonalMenus.length > 0 ? seasonalMenus : menus.filter((menu) => menu.isAvailable !== false).slice(0, 4);
+
+  seasonalGrid.innerHTML = visibleMenus
+    .map(
+      (menu) => `
+        <a class="seasonal-card" href="./menus/detail.html?id=${menu.id}">
+          <img src="${menu.image || fallbackMenus[0].image}" alt="${menu.name}" loading="lazy" />
+          <span>${menu.name}</span>
+          <strong>${formatPrice(menu.price)}</strong>
+        </a>
+      `
+    )
+    .join("");
+};
+
 const updateCartCount = () => {
   cartCount.textContent = window.CafeUtils?.getCartCount ? window.CafeUtils.getCartCount() : 0;
 };
 
+renderSeasonalMenus();
 renderSignatures();
 updateCartCount();
