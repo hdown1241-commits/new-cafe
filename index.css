@@ -136,7 +136,7 @@
 
 .seasonal-card {
   display: grid;
-  grid-template-rows: 210px auto;
+  grid-template-rows: 230px auto;
   gap: var(--space-1);
   min-width: 0;
   color: var(--color-primary-dark);
@@ -150,7 +150,7 @@
 .seasonal-card img {
   display: block;
   width: 100%;
-  height: 210px;
+  height: 230px;
   border-radius: 18px;
   object-fit: contain;
   object-position: center;
@@ -348,11 +348,11 @@
   }
 
   .seasonal-card {
-    grid-template-rows: 150px auto;
+    grid-template-rows: 165px auto;
   }
 
   .seasonal-card img {
-    height: 150px;
+    height: 165px;
   }
 
   .hero,
