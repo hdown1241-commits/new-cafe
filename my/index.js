@@ -1,8 +1,7 @@
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
 const CART_STORAGE_KEY = "new-cafe-cart";
-const PROFILE_STORAGE_KEY = "new-cafe-profile";
-const PROFILE_VERSION_KEY = "new-cafe-profile-version";
-const PROFILE_VERSION = "2026-07-13-profile-name";
+const LEGACY_PROFILE_STORAGE_KEY = "new-cafe-profile";
+const PROFILE_STORAGE_KEY = "new-cafe-profile-v2";
 
 const DEFAULT_PROFILE = {
   name: "\uc784\uc7ac\ud604",
@@ -41,27 +40,13 @@ const readOrderCount = () => {
 const readProfile = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY));
-    if (stored && stored.name && stored.email) {
-      if (localStorage.getItem(PROFILE_VERSION_KEY) !== PROFILE_VERSION) {
-        localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(DEFAULT_PROFILE));
-        localStorage.setItem(PROFILE_VERSION_KEY, PROFILE_VERSION);
-        return DEFAULT_PROFILE;
-      }
-
-      const migrated = {
-        ...stored,
-        name: stored.name === "박용우" ? DEFAULT_PROFILE.name : stored.name,
-        email: stored.email === "parkyw@example.com" ? DEFAULT_PROFILE.email : stored.email,
-      };
-      localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(migrated));
-      return migrated;
-    }
+    if (stored && stored.name && stored.email) return stored;
   } catch {
     // fall through to seed on malformed storage
   }
 
+  localStorage.removeItem(LEGACY_PROFILE_STORAGE_KEY);
   localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(DEFAULT_PROFILE));
-  localStorage.setItem(PROFILE_VERSION_KEY, PROFILE_VERSION);
   return DEFAULT_PROFILE;
 };
 
@@ -123,17 +108,17 @@ profileEditForm.addEventListener("submit", (event) => {
 
 withdrawButton.addEventListener("click", () => {
   const confirmed = confirm(
-    "정말 탈퇴하시겠습니까? 프로필 정보와 장바구니, 주문 내역이 모두 삭제되며 되돌릴 수 없습니다."
+    "\uc815\ub9d0 \ud0c8\ud1f4\ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c? \ud504\ub85c\ud544 \uc815\ubcf4\uc640 \uc7a5\ubc14\uad6c\ub2c8, \uc8fc\ubb38 \ub0b4\uc5ed\uc774 \ubaa8\ub450 \uc0ad\uc81c\ub418\uba70 \ub418\ub3cc\ub9b4 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4."
   );
 
   if (!confirmed) return;
 
   localStorage.removeItem(PROFILE_STORAGE_KEY);
-  localStorage.removeItem(PROFILE_VERSION_KEY);
+  localStorage.removeItem(LEGACY_PROFILE_STORAGE_KEY);
   localStorage.removeItem(CART_STORAGE_KEY);
   localStorage.removeItem(ORDERS_STORAGE_KEY);
 
-  alert("탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.");
+  alert("\ud0c8\ud1f4\uac00 \uc644\ub8cc\ub418\uc5c8\uc2b5\ub2c8\ub2e4. \uc774\uc6a9\ud574\uc8fc\uc154\uc11c \uac10\uc0ac\ud569\ub2c8\ub2e4.");
   window.location.href = "../index.html";
 });
 
