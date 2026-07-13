@@ -41,10 +41,10 @@
 }
 
 .hero {
-  min-height: calc(100vh - 64px);
+  min-height: 68vh;
   background:
-    linear-gradient(90deg, rgba(36, 27, 20, 0.86), rgba(36, 27, 20, 0.46)),
-    url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=80");
+    linear-gradient(90deg, rgba(36, 27, 20, 0.88), rgba(36, 27, 20, 0.36)),
+    url("./assets/hero-maid-cafe.svg");
   background-position: center;
   background-size: cover;
   color: #fff;
@@ -53,8 +53,8 @@
 .hero-inner {
   display: grid;
   align-content: center;
-  min-height: calc(100vh - 64px);
-  padding: var(--space-7) 0;
+  min-height: 68vh;
+  padding: var(--space-6) 0;
 }
 
 .eyebrow {
@@ -241,5 +241,10 @@
 
   .quick-links {
     grid-template-columns: 1fr;
+  }
+
+  .hero,
+  .hero-inner {
+    min-height: 560px;
   }
 }
