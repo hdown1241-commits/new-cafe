@@ -27,6 +27,7 @@ const readCart = () => {
 
 const saveCart = (cart) => {
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  window.dispatchEvent(new CustomEvent("cafe:cart-updated"));
   return cart;
 };
 

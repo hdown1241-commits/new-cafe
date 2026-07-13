@@ -72,7 +72,10 @@ const updateCartCount = () => {
 };
 
 const renderSummary = () => {
-  basketCount.textContent = window.CafeUtils.getCartCount();
+  const currentCartCount = window.CafeUtils.getCartCount();
+
+  cartCount.textContent = currentCartCount;
+  basketCount.textContent = currentCartCount;
   basketTotal.textContent = window.CafeUtils.formatPrice(window.CafeUtils.getCartTotal());
   orderCount.textContent = readOrderCount();
 };
@@ -99,6 +102,11 @@ const openEditForm = () => {
 const closeEditForm = () => {
   profileEditForm.hidden = true;
   profileView.hidden = false;
+};
+
+const renderPage = () => {
+  renderProfile();
+  renderSummary();
 };
 
 editProfileButton.addEventListener("click", openEditForm);
@@ -134,6 +142,13 @@ withdrawButton.addEventListener("click", () => {
   window.location.href = "../index.html";
 });
 
-renderProfile();
-renderSummary();
-updateCartCount();
+window.addEventListener("pageshow", renderPage);
+window.addEventListener("focus", renderSummary);
+window.addEventListener("storage", (event) => {
+  if ([CART_STORAGE_KEY, ORDERS_STORAGE_KEY].includes(event.key)) {
+    renderSummary();
+  }
+});
+window.addEventListener("cafe:cart-updated", renderSummary);
+
+renderPage();
