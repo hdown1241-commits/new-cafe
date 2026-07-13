@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | new-cafe</title>
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="../index.html">new-cafe</a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="../menus/list.html">Menu</a>
+          <a href="../basket/list.html">Basket <span id="cartCount">0</span></a>
+          <a href="../orders/list.html">Orders</a>
+          <a href="../my/index.html">My Page</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="login-page">
+      <section class="login-panel">
+        <p class="eyebrow">Welcome back</p>
+        <h1>Login</h1>
+        <p class="login-copy">주문 내역과 마이페이지를 확인하려면 로그인해 주세요.</p>
+
+        <form id="loginForm" class="login-form">
+          <label>
+            <span>Name</span>
+            <input id="nameInput" name="name" type="text" value="임재현" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input id="emailInput" name="email" type="email" value="limjh@example.com" required />
+          </label>
+          <button type="submit">Login</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="../js/utils.js"></script>
+    <script src="./login.js"></script>
+  </body>
+</html>

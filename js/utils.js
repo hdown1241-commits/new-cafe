@@ -1,4 +1,14 @@
 const CART_STORAGE_KEY = "new-cafe-cart";
+const AUTH_STORAGE_KEY = "new-cafe-auth-user";
+
+const getAppRoot = () => {
+  const scriptPath = document.currentScript?.getAttribute("src") || "";
+  if (scriptPath.startsWith("../../")) return "../../";
+  if (scriptPath.startsWith("../")) return "../";
+  return "./";
+};
+
+const APP_ROOT = getAppRoot();
 
 const formatPrice = (price) =>
   new Intl.NumberFormat("ko-KR", {
@@ -63,6 +73,65 @@ const getMenuById = (menuId) =>
 const getMenusByCategory = (categoryId) =>
   window.CafeData?.menus.filter((menu) => menu.categoryId === categoryId) || [];
 
+const getCurrentUser = () => {
+  try {
+    return JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY));
+  } catch {
+    return null;
+  }
+};
+
+const isLoggedIn = () => Boolean(getCurrentUser()?.email);
+
+const login = ({ name, email }) => {
+  const user = {
+    name: name || "\uc784\uc7ac\ud604",
+    email: email || "limjh@example.com",
+    loggedInAt: new Date().toISOString(),
+  };
+  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(user));
+  return user;
+};
+
+const logout = () => {
+  localStorage.removeItem(AUTH_STORAGE_KEY);
+};
+
+const getReturnTo = () => {
+  const current = `${window.location.pathname}${window.location.search}`;
+  return encodeURIComponent(current);
+};
+
+const requireAuth = () => {
+  if (isLoggedIn()) return true;
+  window.location.href = `${APP_ROOT}auth/login.html?returnTo=${getReturnTo()}`;
+  return false;
+};
+
+const renderAuthNav = () => {
+  const nav = document.querySelector(".header-nav");
+  if (!nav || nav.dataset.authReady === "true") return;
+
+  nav.dataset.authReady = "true";
+  const authAction = document.createElement(isLoggedIn() ? "button" : "a");
+  authAction.className = "auth-link";
+
+  if (isLoggedIn()) {
+    const user = getCurrentUser();
+    authAction.type = "button";
+    authAction.textContent = `${user.name} Logout`;
+    authAction.addEventListener("click", () => {
+      logout();
+      window.location.href = `${APP_ROOT}index.html`;
+    });
+  } else {
+    authAction.href = `${APP_ROOT}auth/login.html?returnTo=${getReturnTo()}`;
+    authAction.textContent = "Login";
+  }
+
+  nav.appendChild(authAction);
+};
+
 // 데모용 관리자 게이트 - 백엔드/로그인 없이 클라이언트에서만 PIN을 확인하므로
 // 실제 접근 제어가 아니라 우발적인 진입만 막는 용도입니다.
 const ADMIN_PASSCODE = "admin1234";
@@ -91,11 +160,19 @@ window.CafeUtils = {
   formatPrice,
   getCartCount,
   getCartTotal,
+  getCurrentUser,
   getMenuById,
   getMenusByCategory,
   isAdminAuthenticated,
+  isLoggedIn,
+  login,
+  logout,
   readCart,
   removeCartItem,
+  renderAuthNav,
+  requireAuth,
   requireAdminAccess,
   updateCartItem,
 };
+
+renderAuthNav();

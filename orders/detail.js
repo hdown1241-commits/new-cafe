@@ -1,3 +1,5 @@
+window.CafeUtils.requireAuth();
+
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
 
 const orderDetail = document.querySelector("#orderDetail");

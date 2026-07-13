@@ -1,3 +1,5 @@
+window.CafeUtils.requireAuth();
+
 const basketItems = document.querySelector("#basketItems");
 const basketLayout = document.querySelector(".basket-layout");
 const summaryCount = document.querySelector("#summaryCount");

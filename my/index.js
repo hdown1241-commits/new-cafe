@@ -1,3 +1,5 @@
+window.CafeUtils.requireAuth();
+
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
 const CART_STORAGE_KEY = "new-cafe-cart";
 const LEGACY_PROFILE_STORAGE_KEY = "new-cafe-profile";
@@ -38,16 +40,26 @@ const readOrderCount = () => {
 };
 
 const readProfile = () => {
+  const currentUser = window.CafeUtils.getCurrentUser();
+
   try {
     const stored = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY));
-    if (stored && stored.name && stored.email) return stored;
+    if (stored && stored.name && stored.email) {
+      if (currentUser && (stored.email !== currentUser.email || stored.name !== currentUser.name)) {
+        const synced = { ...stored, name: currentUser.name, email: currentUser.email };
+        localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(synced));
+        return synced;
+      }
+      return stored;
+    }
   } catch {
     // fall through to seed on malformed storage
   }
 
   localStorage.removeItem(LEGACY_PROFILE_STORAGE_KEY);
-  localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(DEFAULT_PROFILE));
-  return DEFAULT_PROFILE;
+  const profile = currentUser ? { ...DEFAULT_PROFILE, name: currentUser.name, email: currentUser.email } : DEFAULT_PROFILE;
+  localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+  return profile;
 };
 
 const saveProfile = (profile) => {

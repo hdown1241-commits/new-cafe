@@ -1,0 +1,121 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(12px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  gap: var(--space-4);
+}
+
+.brand {
+  color: var(--color-primary-dark);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.header-nav a {
+  min-height: 40px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.header-nav a:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
+.login-page {
+  display: grid;
+  min-height: calc(100vh - 64px);
+  place-items: center;
+  padding: var(--space-6) 16px;
+}
+
+.login-panel {
+  width: min(100%, 430px);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(12px);
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-2);
+  color: var(--color-accent);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.login-panel h1 {
+  margin: 0;
+  color: var(--color-primary-dark);
+  font-size: clamp(2.2rem, 8vw, 3.5rem);
+}
+
+.login-copy {
+  margin: var(--space-3) 0 var(--space-5);
+  color: var(--color-text-muted);
+}
+
+.login-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.login-form label {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-weight: 800;
+}
+
+.login-form input {
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+}
+
+.login-form button {
+  min-height: 48px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 900;
+}
+
+.login-form button:hover {
+  background: var(--color-primary-dark);
+}
+
+@media (max-width: 720px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: var(--space-3) 0;
+  }
+
+  .header-nav {
+    width: 100%;
+    overflow-x: auto;
+  }
+}
