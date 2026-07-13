@@ -48,8 +48,9 @@ body {
   background:
     var(--photo-veil),
     var(--photo-bg);
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   color: var(--color-text);
   font-family: var(--font-body);

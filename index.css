@@ -43,12 +43,9 @@
 .hero {
   min-height: 600px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background:
-    linear-gradient(120deg, rgba(255, 232, 243, 0.9), rgba(255, 248, 252, 0.72)),
-    var(--photo-bg);
-  background-position: center;
-  background-size: cover;
+    linear-gradient(120deg, rgba(255, 232, 243, 0.74), rgba(255, 248, 252, 0.52));
   color: var(--color-primary-dark);
 }
 

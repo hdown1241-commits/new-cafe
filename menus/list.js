@@ -10,6 +10,8 @@ const resultTitle = document.querySelector("#resultTitle");
 const resultCount = document.querySelector("#resultCount");
 const emptyMessage = document.querySelector("#emptyMessage");
 const cartCount = document.querySelector("#cartCount");
+const params = new URLSearchParams(window.location.search);
+const initialCategoryId = params.get("category");
 
 const getCategoryName = (categoryId) =>
   window.CafeData.categories.find((category) => category.id === categoryId)?.name || "메뉴";
@@ -44,6 +46,16 @@ const renderCategoryTabs = () => {
       `
     )
     .join("");
+};
+
+const setInitialCategory = () => {
+  if (!initialCategoryId) return;
+
+  const categoryExists =
+    initialCategoryId === "all" ||
+    window.CafeData.categories.some((category) => category.id === initialCategoryId);
+
+  if (categoryExists) state.categoryId = initialCategoryId;
 };
 
 const renderMenus = () => {
@@ -97,6 +109,7 @@ searchInput.addEventListener("input", (event) => {
   renderMenus();
 });
 
+setInitialCategory();
 renderCategoryTabs();
 renderMenus();
 updateCartCount();

@@ -15,6 +15,7 @@ const CAFE_CATEGORIES = [
   { id: "non-coffee", name: "논커피" },
   { id: "tea", name: "티" },
   { id: "dessert", name: "디저트" },
+  { id: "seasonal", name: "계절메뉴" },
 ];
 
 const CAFE_MENUS = [
@@ -72,7 +73,7 @@ const CAFE_MENUS = [
   },
   {
     id: 6,
-    categoryId: "non-coffee",
+    categoryId: "seasonal",
     name: "자몽 망고 코코 / Grapefruit Mango Coco",
     description: "핑크 자몽과 망고 퓌레, 코코넛 크림을 블렌딩한 산뜻한 계절 음료",
     price: 6500,
@@ -83,7 +84,7 @@ const CAFE_MENUS = [
   },
   {
     id: 7,
-    categoryId: "tea",
+    categoryId: "seasonal",
     name: "씨솔트 폼 블랙티 / Sea Salt Foam Black Tea",
     description: "시원한 블랙티 위에 부드러운 씨솔트 크림 폼을 올린 티 메뉴",
     price: 5900,
@@ -94,7 +95,7 @@ const CAFE_MENUS = [
   },
   {
     id: 8,
-    categoryId: "non-coffee",
+    categoryId: "seasonal",
     name: "라이트 유자 레몬 블렌디드 / Light Yuja Lemon Blended",
     description: "유자와 레몬, 얼음을 함께 갈아 상큼하게 즐기는 골드빛 블렌디드",
     price: 6200,
@@ -105,7 +106,7 @@ const CAFE_MENUS = [
   },
   {
     id: 9,
-    categoryId: "non-coffee",
+    categoryId: "seasonal",
     name: "수박 주스 블렌디드 / Watermelon Juice Blended",
     description: "달콤한 수박과 얼음을 블렌딩한 핑크빛 계절 음료",
     price: 6100,
