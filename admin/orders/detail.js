@@ -4,9 +4,9 @@ const orderDetail = document.querySelector("#orderDetail");
 const notFoundMessage = document.querySelector("#notFoundMessage");
 
 const statusLabels = {
-  preparing: "Preparing",
-  ready: "Ready",
-  completed: "Completed",
+  preparing: "준비 중",
+  ready: "픽업 가능",
+  completed: "완료",
 };
 
 const seedOrders = [
@@ -16,17 +16,17 @@ const seedOrders = [
     status: "preparing",
     pickupName: "임재현",
     items: [
-      { name: "Americano", price: 4500, quantity: 1 },
-      { name: "Basque Cheesecake", price: 6800, quantity: 1 },
+      { name: "Americano / 아메리카노", price: 4500, quantity: 1 },
+      { name: "Basque Cheesecake / 바스크 치즈케이크", price: 6800, quantity: 1 },
     ],
-    memo: "Please pack dessert separately.",
+    memo: "디저트는 따로 포장해주세요.",
   },
   {
     id: "ORD-1002",
     orderedAt: "2026-07-06 12:05",
     status: "ready",
     pickupName: "김하은",
-    items: [{ name: "Cafe Latte", price: 5200, quantity: 2 }],
+    items: [{ name: "Cafe Latte / 카페 라떼", price: 5200, quantity: 2 }],
     memo: "",
   },
   {
@@ -34,7 +34,7 @@ const seedOrders = [
     orderedAt: "2026-07-05 18:40",
     status: "completed",
     pickupName: "최서윤",
-    items: [{ name: "Americano", price: 4500, quantity: 1 }],
+    items: [{ name: "Americano / 아메리카노", price: 4500, quantity: 1 }],
     memo: "",
   },
 ];
@@ -81,7 +81,7 @@ const renderOrder = () => {
   orderDetail.innerHTML = `
     <div class="detail-heading">
       <div>
-        <p class="detail-eyebrow">Order detail</p>
+        <p class="detail-eyebrow">주문 상세</p>
         <h2>${order.id}</h2>
       </div>
       <span class="status-badge ${order.status}">${statusLabels[order.status] || order.status}</span>
@@ -89,21 +89,21 @@ const renderOrder = () => {
 
     <div class="info-grid">
       <div class="info-item">
-        <span>Ordered at</span>
+        <span>주문 시간</span>
         <strong>${order.orderedAt}</strong>
       </div>
       <div class="info-item">
-        <span>Pickup name</span>
+        <span>픽업 이름</span>
         <strong>${order.pickupName || "임재현"}</strong>
       </div>
       <div class="info-item">
-        <span>Total quantity</span>
-        <strong>${getOrderItemCount(order)} item(s)</strong>
+        <span>총 수량</span>
+        <strong>${getOrderItemCount(order)}개</strong>
       </div>
     </div>
 
     <section class="items-section">
-      <h3>Ordered items</h3>
+      <h3>주문 메뉴</h3>
       <div class="item-list">
         ${order.items
           .map(
@@ -111,7 +111,7 @@ const renderOrder = () => {
               <article class="order-item">
                 <div>
                   <h4>${item.name}</h4>
-                  <p>${window.CafeUtils.formatPrice(item.price)} x ${item.quantity}</p>
+                  <p>${window.CafeUtils.formatPrice(item.price)} × ${item.quantity}</p>
                 </div>
                 <span class="item-price">${window.CafeUtils.formatPrice(item.price * item.quantity)}</span>
               </article>
@@ -122,12 +122,12 @@ const renderOrder = () => {
     </section>
 
     <section class="memo-section">
-      <h3>Memo</h3>
-      <p>${order.memo || "No memo was added to this order."}</p>
+      <h3>요청 사항</h3>
+      <p>${order.memo || "별도 요청 사항이 없습니다."}</p>
     </section>
 
     <div class="total-row">
-      <span>Total payment</span>
+      <span>총 결제 금액</span>
       <strong>${window.CafeUtils.formatPrice(getOrderTotal(order))}</strong>
     </div>
   `;

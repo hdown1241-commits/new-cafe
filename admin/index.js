@@ -5,9 +5,9 @@ const menuSummary = document.querySelector("#menuSummary");
 const recentOrders = document.querySelector("#recentOrders");
 
 const statusLabels = {
-  preparing: "Preparing",
-  ready: "Ready",
-  completed: "Completed",
+  preparing: "준비 중",
+  ready: "픽업 가능",
+  completed: "완료",
 };
 
 const seedOrders = [
@@ -17,8 +17,8 @@ const seedOrders = [
     status: "preparing",
     pickupName: "임재현",
     items: [
-      { name: "Americano", price: 4500, quantity: 1 },
-      { name: "Basque Cheesecake", price: 6800, quantity: 1 },
+      { name: "Americano / 아메리카노", price: 4500, quantity: 1 },
+      { name: "Basque Cheesecake / 바스크 치즈케이크", price: 6800, quantity: 1 },
     ],
   },
   {
@@ -26,14 +26,14 @@ const seedOrders = [
     orderedAt: "2026-07-06 12:05",
     status: "ready",
     pickupName: "김하은",
-    items: [{ name: "Cafe Latte", price: 5200, quantity: 2 }],
+    items: [{ name: "Cafe Latte / 카페 라떼", price: 5200, quantity: 2 }],
   },
   {
     id: "ORD-1001",
     orderedAt: "2026-07-05 18:40",
     status: "completed",
     pickupName: "최서윤",
-    items: [{ name: "Americano", price: 4500, quantity: 1 }],
+    items: [{ name: "Americano / 아메리카노", price: 4500, quantity: 1 }],
   },
 ];
 
@@ -72,19 +72,19 @@ const renderStats = () => {
 
   statGrid.innerHTML = `
     <article class="stat-card">
-      <p class="stat-card__label">Total menus</p>
+      <p class="stat-card__label">전체 메뉴</p>
       <p class="stat-card__value">${menus.length}</p>
     </article>
     <article class="stat-card">
-      <p class="stat-card__label">Available menus</p>
+      <p class="stat-card__label">판매 중 메뉴</p>
       <p class="stat-card__value">${availableMenus}</p>
     </article>
     <article class="stat-card">
-      <p class="stat-card__label">Active orders</p>
+      <p class="stat-card__label">진행 중 주문</p>
       <p class="stat-card__value">${activeOrders}</p>
     </article>
     <article class="stat-card">
-      <p class="stat-card__label">Revenue</p>
+      <p class="stat-card__label">매출</p>
       <p class="stat-card__value">${window.CafeUtils.formatPrice(revenue)}</p>
     </article>
   `;
@@ -97,15 +97,15 @@ const renderMenuSummary = () => {
 
   menuSummary.innerHTML = `
     <div class="summary-row">
-      <strong>Signature menus</strong>
+      <strong>시그니처 메뉴</strong>
       <span>${signatureMenus}</span>
     </div>
     <div class="summary-row">
-      <strong>Sold out menus</strong>
+      <strong>품절 메뉴</strong>
       <span>${soldOutMenus}</span>
     </div>
     <div class="summary-row">
-      <strong>Categories</strong>
+      <strong>카테고리</strong>
       <span>${window.CafeData.categories.length}</span>
     </div>
   `;

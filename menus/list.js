@@ -12,7 +12,7 @@ const emptyMessage = document.querySelector("#emptyMessage");
 const cartCount = document.querySelector("#cartCount");
 
 const getCategoryName = (categoryId) =>
-  window.CafeData.categories.find((category) => category.id === categoryId)?.name || "Menu";
+  window.CafeData.categories.find((category) => category.id === categoryId)?.name || "메뉴";
 
 const getFilteredMenus = () =>
   window.CafeData.menus.filter((menu) => {
@@ -27,7 +27,7 @@ const getFilteredMenus = () =>
   });
 
 const renderCategoryTabs = () => {
-  const categories = [{ id: "all", name: "All" }, ...window.CafeData.categories];
+  const categories = [{ id: "all", name: "전체" }, ...window.CafeData.categories];
 
   categoryTabs.innerHTML = categories
     .map(
@@ -49,8 +49,8 @@ const renderCategoryTabs = () => {
 const renderMenus = () => {
   const menus = getFilteredMenus();
 
-  resultTitle.textContent = state.categoryId === "all" ? "All menus" : getCategoryName(state.categoryId);
-  resultCount.textContent = `${menus.length} item${menus.length === 1 ? "" : "s"}`;
+  resultTitle.textContent = state.categoryId === "all" ? "전체 메뉴" : getCategoryName(state.categoryId);
+  resultCount.textContent = `${menus.length}개`;
   emptyMessage.hidden = menus.length > 0;
 
   menuGrid.innerHTML = menus
@@ -63,14 +63,14 @@ const renderMenus = () => {
           <div>
             <div class="menu-card-header">
               <h3>${menu.name}</h3>
-              ${menu.isSignature ? '<span class="badge">Signature</span>' : ""}
+              ${menu.isSignature ? '<span class="badge">시그니처</span>' : ""}
             </div>
             <p class="category-name">${getCategoryName(menu.categoryId)}</p>
             <p class="menu-description">${menu.description}</p>
           </div>
           <div class="menu-card-footer">
             <span class="price">${window.CafeUtils.formatPrice(menu.price)}</span>
-            <a class="detail-link" href="./detail.html?id=${menu.id}">View</a>
+            <a class="detail-link" href="./detail.html?id=${menu.id}">보기</a>
           </div>
         </article>
       `

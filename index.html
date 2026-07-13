@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,11 +11,11 @@
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="./index.html" aria-current="page">new-cafe</a>
-        <nav class="header-nav" aria-label="Main navigation">
-          <a href="./menus/list.html">Menu</a>
-          <a href="./basket/list.html">Basket <span id="cartCount">0</span></a>
-          <a href="./orders/list.html">Orders</a>
-          <a href="./my/index.html">My Page</a>
+        <nav class="header-nav" aria-label="주요 메뉴">
+          <a href="./menus/list.html">메뉴</a>
+          <a href="./basket/list.html">장바구니 <span id="cartCount">0</span></a>
+          <a href="./orders/list.html">주문 내역</a>
+          <a href="./my/index.html">마이페이지</a>
         </nav>
       </div>
     </header>
@@ -23,53 +23,53 @@
     <main>
       <section class="hero">
         <div class="container hero-inner">
-          <p class="eyebrow">new-cafe seasonal tray</p>
-          <h1>Sweet pink refresh</h1>
+          <p class="eyebrow">new-cafe 계절 음료</p>
+          <h1>핑크빛 여름 한 잔</h1>
           <p class="hero-copy">
-            Berry-colored drinks, soft tea foam, and cool fruit blends for a cute cafe afternoon.
+            산뜻한 과일 블렌디드와 부드러운 티 폼으로 귀여운 카페 오후를 채워보세요.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="./menus/list.html">View seasonal menu</a>
+            <a class="btn btn-primary" href="./menus/list.html">계절 메뉴 보기</a>
           </div>
-          <div class="seasonal-showcase" aria-label="Seasonal drinks">
+          <div class="seasonal-showcase" aria-label="계절 음료">
             <a class="seasonal-card seasonal-card--mango" href="./menus/detail.html?id=6">
-              <span>Grapefruit Mango Coco</span>
+              <span>자몽 망고 코코</span>
             </a>
             <a class="seasonal-card seasonal-card--tea" href="./menus/detail.html?id=7">
-              <span>Sea Salt Foam Black Tea</span>
+              <span>씨솔트 폼 블랙티</span>
             </a>
             <a class="seasonal-card seasonal-card--yuja" href="./menus/detail.html?id=8">
-              <span>Light Yuja Lemon Blended</span>
+              <span>유자 레몬 블렌디드</span>
             </a>
             <a class="seasonal-card seasonal-card--watermelon" href="./menus/detail.html?id=9">
-              <span>Watermelon Juice Blended</span>
+              <span>수박 주스 블렌디드</span>
             </a>
           </div>
         </div>
       </section>
 
-      <section class="container quick-links" aria-label="Quick links">
+      <section class="container quick-links" aria-label="바로가기">
         <a class="quick-card" href="./menus/list.html">
           <span>01</span>
-          <strong>Menu</strong>
-          <p>Explore drinks and desserts.</p>
+          <strong>메뉴</strong>
+          <p>음료와 디저트를 둘러보세요.</p>
         </a>
         <a class="quick-card" href="./basket/list.html">
           <span>02</span>
-          <strong>Basket</strong>
-          <p>Review selected items.</p>
+          <strong>장바구니</strong>
+          <p>담은 메뉴를 확인하세요.</p>
         </a>
         <a class="quick-card" href="./orders/list.html">
           <span>03</span>
-          <strong>Orders</strong>
-          <p>Check pickup progress.</p>
+          <strong>주문 내역</strong>
+          <p>픽업 진행 상태를 확인하세요.</p>
         </a>
       </section>
 
       <section class="container signature-section">
         <div class="section-heading">
-          <p class="eyebrow">Recommended</p>
-          <h2>Signature menu</h2>
+          <p class="eyebrow">추천 메뉴</p>
+          <h2>시그니처 메뉴</h2>
         </div>
         <div id="signatureGrid" class="signature-grid" aria-live="polite"></div>
       </section>

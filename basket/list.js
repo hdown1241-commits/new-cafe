@@ -30,15 +30,15 @@ const renderBasket = () => {
         <article class="basket-item" data-id="${item.id}">
           <div class="item-info">
             <h3>${item.name}</h3>
-            <p class="unit-price">${window.CafeUtils.formatPrice(item.price)} each</p>
+            <p class="unit-price">개당 ${window.CafeUtils.formatPrice(item.price)}</p>
           </div>
           <div class="quantity-input">
-            <button type="button" class="decrease-button" aria-label="Decrease quantity">-</button>
+            <button type="button" class="decrease-button" aria-label="수량 줄이기">-</button>
             <input type="number" class="quantity-field" value="${item.quantity}" min="1" max="20" />
-            <button type="button" class="increase-button" aria-label="Increase quantity">+</button>
+            <button type="button" class="increase-button" aria-label="수량 늘리기">+</button>
           </div>
           <p class="line-total">${window.CafeUtils.formatPrice(item.price * item.quantity)}</p>
-          <button type="button" class="remove-button" aria-label="Remove ${item.name}">Remove</button>
+          <button type="button" class="remove-button" aria-label="${item.name} 삭제">삭제</button>
         </article>
       `
     )

@@ -19,8 +19,8 @@ const seedOrders = [
     status: "preparing",
     pickupName: "임재현",
     items: [
-      { name: "Americano", price: 4500, quantity: 1 },
-      { name: "Basque Cheesecake", price: 6800, quantity: 1 },
+      { name: "Americano / 아메리카노", price: 4500, quantity: 1 },
+      { name: "Basque Cheesecake / 바스크 치즈케이크", price: 6800, quantity: 1 },
     ],
     memo: "디저트는 따로 포장해주세요.",
   },
@@ -29,7 +29,7 @@ const seedOrders = [
     orderedAt: "2026-07-06 12:05",
     status: "ready",
     pickupName: "김하은",
-    items: [{ name: "Cafe Latte", price: 5200, quantity: 2 }],
+    items: [{ name: "Cafe Latte / 카페 라떼", price: 5200, quantity: 2 }],
     memo: "",
   },
   {
@@ -37,7 +37,7 @@ const seedOrders = [
     orderedAt: "2026-07-05 18:40",
     status: "completed",
     pickupName: "최서윤",
-    items: [{ name: "Americano", price: 4500, quantity: 1 }],
+    items: [{ name: "Americano / 아메리카노", price: 4500, quantity: 1 }],
     memo: "",
   },
 ];
@@ -81,7 +81,7 @@ const renderOrder = () => {
   orderDetail.innerHTML = `
     <div class="detail-heading">
       <div>
-        <p>Order Detail</p>
+        <p>주문 상세</p>
         <h1>${order.id}</h1>
       </div>
       <span class="status-badge ${order.status}">${statusLabels[order.status]}</span>
@@ -111,7 +111,7 @@ const renderOrder = () => {
               <article class="order-item">
                 <div>
                   <h3>${item.name}</h3>
-                  <p>${window.CafeUtils.formatPrice(item.price)} x ${item.quantity}</p>
+                  <p>${window.CafeUtils.formatPrice(item.price)} × ${item.quantity}</p>
                 </div>
                 <span class="item-price">${window.CafeUtils.formatPrice(item.price * item.quantity)}</span>
               </article>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Management | new-cafe</title>
+    <title>주문 관리 | new-cafe</title>
     <link rel="stylesheet" href="../../css/variables.css" />
     <link rel="stylesheet" href="./list.css" />
   </head>
@@ -11,42 +11,42 @@
     <div class="admin-shell">
       <aside class="admin-sidebar">
         <div class="admin-sidebar__brand">
-          <span class="admin-sidebar__brand-mark">NC</span>
-          New Cafe Admin
+          <span class="admin-sidebar__brand-mark">관리</span>
+          new-cafe 관리자
         </div>
-        <nav class="admin-sidebar__nav" aria-label="Admin navigation">
-          <a href="../index.html"><span class="icon">DB</span>Dashboard</a>
-          <a href="../menus/list.html"><span class="icon">MN</span>Menu management</a>
-          <a href="./list.html" class="is-active"><span class="icon">OR</span>Order management</a>
+        <nav class="admin-sidebar__nav" aria-label="관리자 메뉴">
+          <a href="../index.html"><span class="icon">관리</span>대시보드</a>
+          <a href="../menus/list.html"><span class="icon">메뉴</span>메뉴 관리</a>
+          <a href="./list.html" class="is-active"><span class="icon">주문</span>주문 관리</a>
         </nav>
-        <p class="admin-sidebar__foot">new-cafe operations</p>
+        <p class="admin-sidebar__foot">new-cafe 운영 관리</p>
       </aside>
 
       <div class="admin-content">
         <header class="admin-topbar">
           <div class="admin-topbar__heading">
-            <span class="admin-topbar__eyebrow">Orders</span>
-            <h1 class="admin-topbar__title">Order management</h1>
+            <span class="admin-topbar__eyebrow">주문</span>
+            <h1 class="admin-topbar__title">주문 관리</h1>
           </div>
-          <a href="../index.html" class="btn btn--ghost">Dashboard</a>
+          <a href="../index.html" class="btn btn--ghost">대시보드</a>
         </header>
 
         <main class="admin-main">
-          <section class="stat-grid" aria-label="Order stats">
+          <section class="stat-grid" aria-label="주문 통계">
             <article class="stat-card">
-              <p class="stat-card__label">Total orders</p>
+              <p class="stat-card__label">전체 주문</p>
               <p id="totalOrders" class="stat-card__value">0</p>
             </article>
             <article class="stat-card">
-              <p class="stat-card__label">Active orders</p>
+              <p class="stat-card__label">진행 중 주문</p>
               <p id="activeOrders" class="stat-card__value">0</p>
             </article>
             <article class="stat-card">
-              <p class="stat-card__label">Ready orders</p>
+              <p class="stat-card__label">픽업 가능 주문</p>
               <p id="readyOrders" class="stat-card__value">0</p>
             </article>
             <article class="stat-card">
-              <p class="stat-card__label">Revenue</p>
+              <p class="stat-card__label">매출</p>
               <p id="totalRevenue" class="stat-card__value">0</p>
             </article>
           </section>
@@ -54,14 +54,14 @@
           <section class="orders-panel">
             <div class="panel-heading">
               <div>
-                <p class="panel-eyebrow">Queue</p>
-                <h2>Order list</h2>
+                <p class="panel-eyebrow">대기열</p>
+                <h2>주문 목록</h2>
               </div>
-              <select id="statusFilter" class="status-filter" aria-label="Filter by status">
-                <option value="all">All statuses</option>
-                <option value="preparing">Preparing</option>
-                <option value="ready">Ready</option>
-                <option value="completed">Completed</option>
+              <select id="statusFilter" class="status-filter" aria-label="상태 필터">
+                <option value="all">전체 상태</option>
+                <option value="preparing">준비 중</option>
+                <option value="ready">픽업 가능</option>
+                <option value="completed">완료</option>
               </select>
             </div>
 
@@ -69,18 +69,18 @@
               <table class="orders-table">
                 <thead>
                   <tr>
-                    <th>Order</th>
-                    <th>Pickup name</th>
-                    <th>Status</th>
-                    <th>Items</th>
-                    <th>Total</th>
-                    <th>Ordered at</th>
-                    <th>Action</th>
+                    <th>주문</th>
+                    <th>픽업 이름</th>
+                    <th>상태</th>
+                    <th>수량</th>
+                    <th>합계</th>
+                    <th>주문 시간</th>
+                    <th>관리</th>
                   </tr>
                 </thead>
                 <tbody id="orderTableBody"></tbody>
               </table>
-              <p id="emptyState" class="empty-state" hidden>No orders match this filter.</p>
+              <p id="emptyState" class="empty-state" hidden>조건에 맞는 주문이 없습니다.</p>
             </div>
           </section>
         </main>

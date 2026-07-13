@@ -73,8 +73,8 @@ const CAFE_MENUS = [
   {
     id: 6,
     categoryId: "non-coffee",
-    name: "Grapefruit Mango Coco",
-    description: "Pink grapefruit, mango puree, and coconut cream blended for a bright seasonal drink.",
+    name: "Grapefruit Mango Coco / 자몽 망고 코코",
+    description: "핑크 자몽과 망고 퓌레, 코코넛 크림을 블렌딩한 산뜻한 계절 음료",
     price: 6500,
     image: getDataAssetUrl("seasonal-mango.png"),
     isSignature: true,
@@ -84,8 +84,8 @@ const CAFE_MENUS = [
   {
     id: 7,
     categoryId: "tea",
-    name: "Sea Salt Foam Black Tea",
-    description: "Iced black tea finished with a soft sea-salt cream foam.",
+    name: "Sea Salt Foam Black Tea / 씨솔트 폼 블랙티",
+    description: "시원한 블랙티 위에 부드러운 씨솔트 크림 폼을 올린 티 메뉴",
     price: 5900,
     image: getDataAssetUrl("seasonal-tea.png"),
     isSignature: true,
@@ -95,8 +95,8 @@ const CAFE_MENUS = [
   {
     id: 8,
     categoryId: "non-coffee",
-    name: "Light Yuja Lemon Blended",
-    description: "Yuja, lemon, and ice blended into a fresh golden summer cooler.",
+    name: "Light Yuja Lemon Blended / 라이트 유자 레몬 블렌디드",
+    description: "유자와 레몬, 얼음을 함께 갈아 상큼하게 즐기는 골드빛 블렌디드",
     price: 6200,
     image: getDataAssetUrl("seasonal-yuja.png"),
     isSignature: true,
@@ -106,8 +106,8 @@ const CAFE_MENUS = [
   {
     id: 9,
     categoryId: "non-coffee",
-    name: "Watermelon Juice Blended",
-    description: "Sweet watermelon blended with ice for a vivid pink seasonal refresher.",
+    name: "Watermelon Juice Blended / 수박 주스 블렌디드",
+    description: "달콤한 수박과 얼음을 블렌딩한 핑크빛 계절 음료",
     price: 6100,
     image: getDataAssetUrl("seasonal-watermelon.png"),
     isSignature: true,

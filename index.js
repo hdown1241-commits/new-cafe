@@ -4,8 +4,8 @@ const cartCount = document.querySelector("#cartCount");
 const fallbackMenus = [
   {
     id: 1,
-    name: "Americano",
-    description: "Clean espresso with hot water.",
+    name: "Americano / 아메리카노",
+    description: "깔끔한 에스프레소에 따뜻한 물을 더한 커피",
     price: 4500,
     image:
       "https://upload.wikimedia.org/wikipedia/commons/5/5a/A_cup_of_Americano_in_Lano_Coffee_%28Palembang%2C_SS%29.jpg",
@@ -13,16 +13,16 @@ const fallbackMenus = [
   },
   {
     id: 2,
-    name: "Cafe Latte",
-    description: "Espresso with steamed milk.",
+    name: "Cafe Latte / 카페 라떼",
+    description: "에스프레소에 부드러운 스팀 밀크를 더한 커피",
     price: 5200,
     image: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg",
     isSignature: true,
   },
   {
     id: 5,
-    name: "Basque Cheesecake",
-    description: "Creamy cheesecake with a caramelized top.",
+    name: "Basque Cheesecake / 바스크 치즈케이크",
+    description: "진한 치즈 풍미와 그을린 윗면이 매력적인 디저트",
     price: 6800,
     image:
       "https://upload.wikimedia.org/wikipedia/commons/e/ee/Chestnut_Basque_Cheesecake_-_MOGUMOGU_2024-11-02.jpg",
@@ -59,10 +59,10 @@ const renderSignatures = () => {
           <img src="${menu.image || fallbackMenus[0].image}" alt="${menu.name}" loading="lazy" />
           <div class="menu-card-body">
             <h3>${menu.name}</h3>
-            <p>${menu.description || "Cafe menu item"}</p>
+            <p>${menu.description || "카페 메뉴"}</p>
             <div class="menu-card-footer">
               <span class="price">${formatPrice(menu.price)}</span>
-              <a class="menu-link" href="./menus/detail.html?id=${menu.id}">View</a>
+              <a class="menu-link" href="./menus/detail.html?id=${menu.id}">보기</a>
             </div>
           </div>
         </article>

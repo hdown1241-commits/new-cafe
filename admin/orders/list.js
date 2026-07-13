@@ -9,9 +9,9 @@ const readyOrders = document.querySelector("#readyOrders");
 const totalRevenue = document.querySelector("#totalRevenue");
 
 const statusLabels = {
-  preparing: "Preparing",
-  ready: "Ready",
-  completed: "Completed",
+  preparing: "준비 중",
+  ready: "픽업 가능",
+  completed: "완료",
 };
 
 const seedOrders = [
@@ -21,17 +21,17 @@ const seedOrders = [
     status: "preparing",
     pickupName: "임재현",
     items: [
-      { name: "Americano", price: 4500, quantity: 1 },
-      { name: "Basque Cheesecake", price: 6800, quantity: 1 },
+      { name: "Americano / 아메리카노", price: 4500, quantity: 1 },
+      { name: "Basque Cheesecake / 바스크 치즈케이크", price: 6800, quantity: 1 },
     ],
-    memo: "Please pack dessert separately.",
+    memo: "디저트는 따로 포장해주세요.",
   },
   {
     id: "ORD-1002",
     orderedAt: "2026-07-06 12:05",
     status: "ready",
     pickupName: "김하은",
-    items: [{ name: "Cafe Latte", price: 5200, quantity: 2 }],
+    items: [{ name: "Cafe Latte / 카페 라떼", price: 5200, quantity: 2 }],
     memo: "",
   },
   {
@@ -39,7 +39,7 @@ const seedOrders = [
     orderedAt: "2026-07-05 18:40",
     status: "completed",
     pickupName: "최서윤",
-    items: [{ name: "Americano", price: 4500, quantity: 1 }],
+    items: [{ name: "Americano / 아메리카노", price: 4500, quantity: 1 }],
     memo: "",
   },
 ];
@@ -100,10 +100,10 @@ const renderOrders = () => {
           <td><a class="order-id" href="./detail.html?id=${order.id}">${order.id}</a></td>
           <td>${order.pickupName || "임재현"}</td>
           <td><span class="status-badge ${order.status}">${statusLabels[order.status] || order.status}</span></td>
-          <td><span class="muted">${getOrderItemCount(order)} item(s)</span></td>
+          <td><span class="muted">${getOrderItemCount(order)}개</span></td>
           <td>${window.CafeUtils.formatPrice(getOrderTotal(order))}</td>
           <td><span class="muted">${order.orderedAt}</span></td>
-          <td><a class="btn btn--primary" href="./detail.html?id=${order.id}">View detail</a></td>
+          <td><a class="btn btn--primary" href="./detail.html?id=${order.id}">상세 보기</a></td>
         </tr>
       `
     )

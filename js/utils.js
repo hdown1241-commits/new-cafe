@@ -120,7 +120,7 @@ const renderAuthNav = () => {
     adminLink.href = `${APP_ROOT}admin/menus/list.html`;
     adminLink.id = "adminLink";
     adminLink.className = "admin-link";
-    adminLink.textContent = "Admin";
+    adminLink.textContent = "관리자";
     nav.appendChild(adminLink);
   }
 
@@ -140,14 +140,14 @@ const renderAuthNav = () => {
   if (isLoggedIn()) {
     const user = getCurrentUser();
     authAction.type = "button";
-    authAction.textContent = `${user.name} Logout`;
+    authAction.textContent = `${user.name} 로그아웃`;
     authAction.addEventListener("click", () => {
       logout();
       window.location.href = `${APP_ROOT}index.html`;
     });
   } else {
     authAction.href = `${APP_ROOT}auth/login.html?returnTo=${getReturnTo()}`;
-    authAction.textContent = "Login";
+    authAction.textContent = "로그인";
   }
 
   nav.appendChild(authAction);

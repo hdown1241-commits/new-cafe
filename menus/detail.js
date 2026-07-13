@@ -6,7 +6,7 @@ const params = new URLSearchParams(window.location.search);
 const menu = window.CafeUtils.getMenuById(params.get("id"));
 
 const getCategoryName = (categoryId) =>
-  window.CafeData.categories.find((category) => category.id === categoryId)?.name || "Menu";
+  window.CafeData.categories.find((category) => category.id === categoryId)?.name || "메뉴";
 
 const updateCartCount = () => {
   cartCount.textContent = window.CafeUtils.getCartCount();
@@ -26,21 +26,21 @@ const renderDetail = () => {
       <h1>${menu.name}</h1>
       <p class="description">${menu.description}</p>
       <div class="meta-row">
-        ${menu.isSignature ? '<span class="pill">Signature</span>' : ""}
-        <span class="pill">${menu.isAvailable ? "Available" : "Sold out"}</span>
+        ${menu.isSignature ? '<span class="pill">시그니처</span>' : ""}
+        <span class="pill">${menu.isAvailable ? "판매중" : "품절"}</span>
       </div>
       <p class="price">${window.CafeUtils.formatPrice(menu.price)}</p>
       <div class="order-box">
         <div class="quantity-control">
-          <label for="quantityInput">Quantity</label>
+          <label for="quantityInput">수량</label>
           <div class="quantity-input">
-            <button id="decreaseButton" type="button" aria-label="Decrease quantity">-</button>
+            <button id="decreaseButton" type="button" aria-label="수량 줄이기">-</button>
             <input id="quantityInput" type="number" value="1" min="1" max="20" />
-            <button id="increaseButton" type="button" aria-label="Increase quantity">+</button>
+            <button id="increaseButton" type="button" aria-label="수량 늘리기">+</button>
           </div>
         </div>
         <div class="action-row">
-          <button id="addButton" class="add-button" type="button">Add to basket</button>
+          <button id="addButton" class="add-button" type="button">장바구니 담기</button>
           <p id="feedback" class="feedback" aria-live="polite"></p>
         </div>
       </div>
@@ -79,7 +79,7 @@ const bindOrderEvents = () => {
 
     window.CafeUtils.addToCart(menu, quantity);
     updateCartCount();
-    feedback.textContent = `${quantity} item${quantity === 1 ? "" : "s"} added.`;
+    feedback.textContent = `${quantity}개가 장바구니에 담겼습니다.`;
   });
 };
 

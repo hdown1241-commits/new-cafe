@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Detail | new-cafe</title>
+    <title>주문 상세 | new-cafe</title>
     <link rel="stylesheet" href="../../css/variables.css" />
     <link rel="stylesheet" href="./detail.css" />
   </head>
@@ -11,29 +11,29 @@
     <div class="admin-shell">
       <aside class="admin-sidebar">
         <div class="admin-sidebar__brand">
-          <span class="admin-sidebar__brand-mark">NC</span>
-          New Cafe Admin
+          <span class="admin-sidebar__brand-mark">관리</span>
+          new-cafe 관리자
         </div>
-        <nav class="admin-sidebar__nav" aria-label="Admin navigation">
-          <a href="../index.html"><span class="icon">DB</span>Dashboard</a>
-          <a href="../menus/list.html"><span class="icon">MN</span>Menu management</a>
-          <a href="./list.html" class="is-active"><span class="icon">OR</span>Order management</a>
+        <nav class="admin-sidebar__nav" aria-label="관리자 메뉴">
+          <a href="../index.html"><span class="icon">관리</span>대시보드</a>
+          <a href="../menus/list.html"><span class="icon">메뉴</span>메뉴 관리</a>
+          <a href="./list.html" class="is-active"><span class="icon">주문</span>주문 관리</a>
         </nav>
-        <p class="admin-sidebar__foot">new-cafe operations</p>
+        <p class="admin-sidebar__foot">new-cafe 운영 관리</p>
       </aside>
 
       <div class="admin-content">
         <header class="admin-topbar">
           <div class="admin-topbar__heading">
-            <span class="admin-topbar__eyebrow">Orders</span>
-            <h1 class="admin-topbar__title">Order detail</h1>
+            <span class="admin-topbar__eyebrow">주문</span>
+            <h1 class="admin-topbar__title">주문 상세</h1>
           </div>
-          <a href="./list.html" class="btn btn--ghost">Back to orders</a>
+          <a href="./list.html" class="btn btn--ghost">주문 목록으로</a>
         </header>
 
         <main class="admin-main">
           <article id="orderDetail" class="detail-panel" aria-live="polite"></article>
-          <p id="notFoundMessage" class="empty-state" hidden>Order not found.</p>
+          <p id="notFoundMessage" class="empty-state" hidden>주문을 찾을 수 없습니다.</p>
         </main>
       </div>
     </div>
