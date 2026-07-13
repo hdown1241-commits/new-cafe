@@ -1,10 +1,13 @@
 window.CafeUtils.requireAuth();
 
+const ORDERS_STORAGE_KEY = "new-cafe-orders";
+
 const basketItems = document.querySelector("#basketItems");
 const basketLayout = document.querySelector(".basket-layout");
 const summaryCount = document.querySelector("#summaryCount");
 const summaryTotal = document.querySelector("#summaryTotal");
 const clearButton = document.querySelector("#clearButton");
+const checkoutButton = document.querySelector("#checkoutButton");
 const emptyMessage = document.querySelector("#emptyMessage");
 const cartCount = document.querySelector("#cartCount");
 
@@ -46,7 +49,53 @@ const renderBasket = () => {
 
   summaryCount.textContent = window.CafeUtils.getCartCount();
   summaryTotal.textContent = window.CafeUtils.formatPrice(window.CafeUtils.getCartTotal());
+  checkoutButton.disabled = cart.length === 0;
   updateCartCount();
+};
+
+const readOrders = () => {
+  try {
+    const stored = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY));
+    return Array.isArray(stored) ? stored : [];
+  } catch {
+    return [];
+  }
+};
+
+const createOrder = () => {
+  const cart = window.CafeUtils.readCart();
+  if (cart.length === 0) return null;
+
+  const unavailableItem = cart.find((item) => {
+    const menu = window.CafeUtils.getMenuById(item.id);
+    return !menu || !menu.isAvailable;
+  });
+
+  if (unavailableItem) {
+    alert(`${unavailableItem.name} 메뉴는 현재 주문할 수 없습니다.`);
+    return null;
+  }
+
+  const now = new Date();
+  const order = {
+    id: `ORD-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}-${String(now.getTime()).slice(-5)}`,
+    orderedAt: now.toLocaleString("ko-KR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }),
+    status: "preparing",
+    pickupName: window.CafeUtils.getCurrentUser()?.name || "임재현",
+    items: cart.map((item) => ({ ...item })),
+    memo: "앱에서 결제 완료",
+  };
+
+  localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify([order, ...readOrders()]));
+  window.CafeUtils.clearCart();
+  return order;
 };
 
 basketItems.addEventListener("click", (event) => {
@@ -81,6 +130,14 @@ basketItems.addEventListener("change", (event) => {
 clearButton.addEventListener("click", () => {
   window.CafeUtils.clearCart();
   renderBasket();
+});
+
+checkoutButton.addEventListener("click", () => {
+  const order = createOrder();
+  if (!order) return;
+
+  renderBasket();
+  window.location.href = `../orders/detail.html?id=${encodeURIComponent(order.id)}`;
 });
 
 renderBasket();

@@ -88,7 +88,17 @@ const renderMenus = () => {
           </div>
           <div class="menu-card-footer">
             <span class="price">${window.CafeUtils.formatPrice(menu.price)}</span>
-            <a class="detail-link" href="./detail.html?id=${menu.id}">보기</a>
+            <div class="menu-actions">
+              <a class="detail-link" href="./detail.html?id=${menu.id}">보기</a>
+              <button
+                class="cart-button"
+                type="button"
+                data-cart-id="${menu.id}"
+                ${menu.isAvailable ? "" : "disabled"}
+              >
+                ${menu.isAvailable ? "담기" : "품절"}
+              </button>
+            </div>
           </div>
         </article>
       `
@@ -108,6 +118,23 @@ categoryTabs.addEventListener("click", (event) => {
   state.categoryId = button.dataset.categoryId;
   renderCategoryTabs();
   renderMenus();
+});
+
+menuGrid.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-cart-id]");
+  if (!button) return;
+
+  if (!window.CafeUtils.requireAuth()) return;
+
+  const menu = window.CafeUtils.getMenuById(button.dataset.cartId);
+  if (!menu || !menu.isAvailable) return;
+
+  window.CafeUtils.addToCart(menu, 1);
+  updateCartCount();
+  button.textContent = "담김";
+  window.setTimeout(() => {
+    button.textContent = "담기";
+  }, 900);
 });
 
 searchInput.addEventListener("input", (event) => {
