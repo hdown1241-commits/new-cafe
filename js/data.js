@@ -73,6 +73,7 @@ const LEGACY_EN_TEXT = {
 };
 
 const MENUS_STORAGE_KEY = "new-cafe-menus";
+const AMERICANO_RESTORE_KEY = "new-cafe-americano-restored-v1";
 
 const isPlaceholderImage = (image) =>
   typeof image === "string" && image.startsWith("https://picsum.photos/");
@@ -100,8 +101,15 @@ const readMenus = () => {
 
         return next;
       });
-      localStorage.setItem(MENUS_STORAGE_KEY, JSON.stringify(migrated));
-      return migrated;
+      const restoredAmericano = localStorage.getItem(AMERICANO_RESTORE_KEY) === "true";
+      const hasAmericano = migrated.some((menu) => menu.id === 1);
+      const nextMenus = !restoredAmericano && !hasAmericano
+        ? [{ ...CAFE_MENUS[0] }, ...migrated]
+        : migrated;
+
+      localStorage.setItem(AMERICANO_RESTORE_KEY, "true");
+      localStorage.setItem(MENUS_STORAGE_KEY, JSON.stringify(nextMenus));
+      return nextMenus;
     }
   } catch {
     // fall through to seed on malformed storage
