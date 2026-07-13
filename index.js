@@ -9,7 +9,7 @@ const fallbackMenus = [
     price: 4500,
     image:
       "https://upload.wikimedia.org/wikipedia/commons/5/5a/A_cup_of_Americano_in_Lano_Coffee_%28Palembang%2C_SS%29.jpg",
-    isSignature: true,
+    isSignature: false,
   },
   {
     id: 2,

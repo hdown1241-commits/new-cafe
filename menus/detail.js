@@ -40,7 +40,7 @@ const renderDetail = () => {
           </div>
         </div>
         <div class="action-row">
-          <button id="addButton" class="add-button" type="button">장바구니 담기</button>
+          <button id="addButton" class="add-button" type="button" ${menu.isAvailable ? "" : "disabled"}>${menu.isAvailable ? "장바구니 담기" : "품절"}</button>
           <p id="feedback" class="feedback" aria-live="polite"></p>
         </div>
       </div>
@@ -75,6 +75,11 @@ const bindOrderEvents = () => {
   });
 
   addButton.addEventListener("click", () => {
+    if (!menu.isAvailable) {
+      feedback.textContent = "품절된 메뉴입니다.";
+      return;
+    }
+
     const quantity = Number(quantityInput.value);
 
     window.CafeUtils.addToCart(menu, quantity);

@@ -230,6 +230,19 @@
   font-weight: 700;
 }
 
+.badge-row {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  justify-content: flex-end;
+}
+
+.badge--soldout {
+  background: rgba(194, 65, 53, 0.12) !important;
+  color: var(--color-danger) !important;
+}
+
 .category-name {
   margin: var(--space-2) 0 0;
   color: var(--color-accent);

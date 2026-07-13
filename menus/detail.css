@@ -190,6 +190,12 @@
   background: var(--color-primary-dark);
 }
 
+.add-button:disabled {
+  cursor: not-allowed;
+  background: rgba(124, 102, 112, 0.42);
+  box-shadow: none;
+}
+
 .feedback {
   min-height: 24px;
   margin: 0;

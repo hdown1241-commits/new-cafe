@@ -47,7 +47,7 @@ const CAFE_MENUS = [
     description: "진한 말차와 우유가 어우러진 라떼",
     price: 5800,
     image: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Matcha_green_tea_latte_art.jpg",
-    isSignature: true,
+    isSignature: false,
     isAvailable: true,
   },
   {
@@ -58,7 +58,7 @@ const CAFE_MENUS = [
     price: 4800,
     image: "https://upload.wikimedia.org/wikipedia/commons/2/22/Cup_of_Earl_Gray.jpg",
     isSignature: false,
-    isAvailable: true,
+    isAvailable: false,
   },
   {
     id: 5,
@@ -78,7 +78,7 @@ const CAFE_MENUS = [
     description: "핑크 자몽과 망고 퓌레, 코코넛 크림을 블렌딩한 산뜻한 계절 음료",
     price: 6500,
     image: getDataAssetUrl("seasonal-mango.png"),
-    isSignature: true,
+    isSignature: false,
     isSeasonal: true,
     isAvailable: true,
   },
@@ -89,7 +89,7 @@ const CAFE_MENUS = [
     description: "시원한 블랙티 위에 부드러운 씨솔트 크림 폼을 올린 티 메뉴",
     price: 5900,
     image: getDataAssetUrl("seasonal-tea.png"),
-    isSignature: true,
+    isSignature: false,
     isSeasonal: true,
     isAvailable: true,
   },
@@ -100,7 +100,7 @@ const CAFE_MENUS = [
     description: "유자와 레몬, 얼음을 함께 갈아 상큼하게 즐기는 골드빛 블렌디드",
     price: 6200,
     image: getDataAssetUrl("seasonal-yuja.png"),
-    isSignature: true,
+    isSignature: false,
     isSeasonal: true,
     isAvailable: true,
   },
@@ -166,15 +166,17 @@ const readMenus = () => {
         if (legacy && menu.description === legacy.description) {
           next.description = seed ? seed.description : menu.description;
         }
+        if (seed) {
+          next.isSignature = seed.isSignature;
+          next.isAvailable = seed.isAvailable;
+        }
         if (seed?.isSeasonal) {
           next.categoryId = seed.categoryId;
           next.name = seed.name;
           next.description = seed.description;
           next.price = seed.price;
           next.image = seed.image;
-          next.isSignature = seed.isSignature;
           next.isSeasonal = true;
-          next.isAvailable = seed.isAvailable;
         }
 
         return next;

@@ -78,7 +78,10 @@ const renderMenus = () => {
           <div>
             <div class="menu-card-header">
               <h3>${menu.name}</h3>
-              ${menu.isSignature ? '<span class="badge">시그니처</span>' : ""}
+              <div class="badge-row">
+                ${menu.isSignature ? '<span class="badge">시그니처</span>' : ""}
+                ${!menu.isAvailable ? '<span class="badge badge--soldout">품절</span>' : ""}
+              </div>
             </div>
             <p class="category-name">${getCategoryName(menu.categoryId)}</p>
             <p class="menu-description">${menu.description}</p>
