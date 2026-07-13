@@ -147,32 +147,15 @@
   transform: translateY(-2px);
 }
 
-.seasonal-photo {
+.seasonal-card img {
   display: block;
   width: 100%;
   height: 250px;
   border-radius: 18px;
-  background-image: url("./assets/seasonal-drinks-hero.png");
-  background-repeat: no-repeat;
-  background-size: 410% 100%;
+  object-fit: cover;
+  object-position: center;
   box-shadow: 0 18px 24px rgba(142, 53, 93, 0.18);
   filter: saturate(1.06) brightness(1.03);
-}
-
-.seasonal-card--mango .seasonal-photo {
-  background-position: 0% center;
-}
-
-.seasonal-card--tea .seasonal-photo {
-  background-position: 33.3% center;
-}
-
-.seasonal-card--yuja .seasonal-photo {
-  background-position: 66.6% center;
-}
-
-.seasonal-card--watermelon .seasonal-photo {
-  background-position: 100% center;
 }
 
 .seasonal-card span:last-child {
@@ -367,7 +350,7 @@
     grid-template-rows: 170px auto;
   }
 
-  .seasonal-photo {
+  .seasonal-card img {
     height: 170px;
   }
 
