@@ -122,7 +122,6 @@ const LEGACY_EN_TEXT = {
 
 const MENUS_STORAGE_KEY = "new-cafe-menus";
 const AMERICANO_RESTORE_KEY = "new-cafe-americano-restored-v1";
-const SEASONAL_MENUS_KEY = "new-cafe-seasonal-menus-added-v1";
 
 const isPlaceholderImage = (image) =>
   typeof image === "string" && image.startsWith("https://picsum.photos/");
@@ -152,17 +151,15 @@ const readMenus = () => {
       });
       const restoredAmericano = localStorage.getItem(AMERICANO_RESTORE_KEY) === "true";
       const hasAmericano = migrated.some((menu) => menu.id === 1);
-      const addedSeasonalMenus = localStorage.getItem(SEASONAL_MENUS_KEY) === "true";
-      const missingSeasonalMenus = addedSeasonalMenus
-        ? []
-        : CAFE_MENUS.filter((seed) => seed.isSeasonal && !migrated.some((menu) => menu.id === seed.id));
+      const missingSeasonalMenus = CAFE_MENUS.filter(
+        (seed) => seed.isSeasonal && !migrated.some((menu) => menu.id === seed.id)
+      );
       const nextMenus = !restoredAmericano && !hasAmericano
         ? [{ ...CAFE_MENUS[0] }, ...migrated]
         : migrated;
       const syncedMenus = [...nextMenus, ...missingSeasonalMenus.map((menu) => ({ ...menu }))];
 
       localStorage.setItem(AMERICANO_RESTORE_KEY, "true");
-      localStorage.setItem(SEASONAL_MENUS_KEY, "true");
       localStorage.setItem(MENUS_STORAGE_KEY, JSON.stringify(syncedMenus));
       return syncedMenus;
     }
