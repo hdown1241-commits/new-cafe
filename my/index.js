@@ -1,9 +1,11 @@
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
 const CART_STORAGE_KEY = "new-cafe-cart";
 const PROFILE_STORAGE_KEY = "new-cafe-profile";
+const PROFILE_VERSION_KEY = "new-cafe-profile-version";
+const PROFILE_VERSION = "2026-07-13-profile-name";
 
 const DEFAULT_PROFILE = {
-  name: "임재현",
+  name: "\uc784\uc7ac\ud604",
   email: "limjh@example.com",
   joinedAt: "2026.03.02",
 };
@@ -40,6 +42,12 @@ const readProfile = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY));
     if (stored && stored.name && stored.email) {
+      if (localStorage.getItem(PROFILE_VERSION_KEY) !== PROFILE_VERSION) {
+        localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(DEFAULT_PROFILE));
+        localStorage.setItem(PROFILE_VERSION_KEY, PROFILE_VERSION);
+        return DEFAULT_PROFILE;
+      }
+
       const migrated = {
         ...stored,
         name: stored.name === "박용우" ? DEFAULT_PROFILE.name : stored.name,
@@ -53,6 +61,7 @@ const readProfile = () => {
   }
 
   localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(DEFAULT_PROFILE));
+  localStorage.setItem(PROFILE_VERSION_KEY, PROFILE_VERSION);
   return DEFAULT_PROFILE;
 };
 
@@ -120,6 +129,7 @@ withdrawButton.addEventListener("click", () => {
   if (!confirmed) return;
 
   localStorage.removeItem(PROFILE_STORAGE_KEY);
+  localStorage.removeItem(PROFILE_VERSION_KEY);
   localStorage.removeItem(CART_STORAGE_KEY);
   localStorage.removeItem(ORDERS_STORAGE_KEY);
 
