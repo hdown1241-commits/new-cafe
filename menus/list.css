@@ -59,8 +59,8 @@
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(93, 30, 60, 0.8), rgba(217, 95, 147, 0.14)),
-    var(--hero-photo-bg);
+    linear-gradient(90deg, rgba(93, 30, 60, 0.78), rgba(217, 95, 147, 0.34)),
+    var(--photo-bg);
   background-position: center;
   background-size: cover;
   color: #fff;
