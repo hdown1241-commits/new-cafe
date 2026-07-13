@@ -45,7 +45,7 @@ const seedOrders = [
 const readOrders = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY));
-    if (Array.isArray(stored) && stored.length > 0) {
+    if (Array.isArray(stored)) {
       const migrated = stored.map((order) => {
         const seed = seedOrders.find((seedOrder) => seedOrder.id === order.id);
         if (!seed) return order;

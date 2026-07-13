@@ -42,7 +42,7 @@ const seedOrders = [
 const readOrders = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(ORDERS_STORAGE_KEY));
-    if (Array.isArray(stored) && stored.length > 0) {
+    if (Array.isArray(stored)) {
       const migrated = stored.map((order) => {
         const seed = seedOrders.find((seedOrder) => seedOrder.id === order.id);
         if (!seed) return order;
@@ -67,6 +67,14 @@ const readOrders = () => {
   return seedOrders;
 };
 
+const saveOrders = (orders) => {
+  localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(orders));
+  return orders;
+};
+
+const deleteOrder = (orderId) =>
+  saveOrders(readOrders().filter((item) => item.id !== orderId));
+
 const getOrderTotal = (order) =>
   order.items.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -89,7 +97,10 @@ const renderOrder = () => {
         <p class="detail-eyebrow">주문 상세</p>
         <h2>${order.id}</h2>
       </div>
-      <span class="status-badge ${order.status}">${statusLabels[order.status] || order.status}</span>
+      <div class="detail-actions">
+        <span class="status-badge ${order.status}">${statusLabels[order.status] || order.status}</span>
+        <button type="button" class="btn btn--danger" id="deleteOrderButton">주문 삭제</button>
+      </div>
     </div>
 
     <div class="info-grid">
@@ -139,3 +150,14 @@ const renderOrder = () => {
 };
 
 renderOrder();
+
+const deleteOrderButton = document.querySelector("#deleteOrderButton");
+if (deleteOrderButton && order) {
+  deleteOrderButton.addEventListener("click", () => {
+    const confirmed = confirm(`${order.id} 주문을 삭제할까요?`);
+    if (!confirmed) return;
+
+    deleteOrder(order.id);
+    location.href = "./list.html";
+  });
+}

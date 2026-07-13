@@ -136,6 +136,17 @@
   color: var(--color-text);
 }
 
+.btn--danger {
+  border-color: rgba(194, 65, 53, 0.26);
+  background: rgba(194, 65, 53, 0.1);
+  color: var(--color-danger);
+}
+
+.btn--danger:hover {
+  background: var(--color-danger);
+  color: #fff;
+}
+
 .detail-panel,
 .empty-state {
   border: 1px solid var(--color-border);
@@ -183,6 +194,13 @@
 .status-badge.completed {
   background: rgba(47, 125, 70, 0.16);
   color: var(--color-success);
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: flex-end;
 }
 
 .info-grid {

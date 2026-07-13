@@ -146,6 +146,23 @@
   color: var(--color-text);
 }
 
+.btn--danger {
+  border-color: rgba(194, 65, 53, 0.26);
+  background: rgba(194, 65, 53, 0.1);
+  color: var(--color-danger);
+}
+
+.btn--danger:hover {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
