@@ -146,6 +146,16 @@ const readMenus = () => {
         if (legacy && menu.description === legacy.description) {
           next.description = seed ? seed.description : menu.description;
         }
+        if (seed?.isSeasonal) {
+          next.categoryId = seed.categoryId;
+          next.name = seed.name;
+          next.description = seed.description;
+          next.price = seed.price;
+          next.image = seed.image;
+          next.isSignature = seed.isSignature;
+          next.isSeasonal = true;
+          next.isAvailable = seed.isAvailable;
+        }
 
         return next;
       });
