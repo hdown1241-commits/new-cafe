@@ -45,12 +45,11 @@
   position: relative;
   overflow: hidden;
   background:
-    repeating-linear-gradient(
-      90deg,
-      #d7e7fb 0 18px,
-      #f8fbff 18px 36px
-    );
-  color: #274428;
+    linear-gradient(120deg, rgba(255, 232, 243, 0.9), rgba(255, 248, 252, 0.72)),
+    var(--photo-bg);
+  background-position: center;
+  background-size: cover;
+  color: var(--color-primary-dark);
 }
 
 .hero-inner {
@@ -69,18 +68,23 @@
   margin-top: var(--space-5);
   margin-bottom: var(--space-5);
   padding: clamp(48px, 7vw, 86px) clamp(28px, 6vw, 84px);
-  border: 2px solid rgba(39, 68, 40, 0.62);
-  border-radius: 46% 46% 0 0 / 12% 12% 0 0;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 20px 50px rgba(39, 68, 40, 0.14);
+  border: 1px solid rgba(222, 151, 180, 0.5);
+  border-radius: 34px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 241, 248, 0.88)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 211, 229, 0.4) 0 14px,
+      rgba(255, 255, 255, 0.42) 14px 28px
+    );
+  box-shadow: 0 22px 55px rgba(142, 53, 93, 0.18);
 }
 
 .hero-inner::before {
   position: absolute;
-  inset: 16px 16px auto;
-  height: 44px;
-  border-top: 1px solid rgba(39, 68, 40, 0.42);
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  inset: 18px;
+  border: 1px solid rgba(222, 151, 180, 0.34);
+  border-radius: 26px;
   pointer-events: none;
   content: "";
 }
@@ -88,7 +92,7 @@
 .eyebrow {
   grid-area: eyebrow;
   margin: 0 0 var(--space-2);
-  color: #456044;
+  color: var(--color-accent);
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -97,11 +101,11 @@
   grid-area: title;
   max-width: 420px;
   margin: 0;
-  color: #274428;
-  font-size: clamp(3.2rem, 7vw, 5.8rem);
+  color: var(--color-primary-dark);
+  font-size: clamp(3rem, 6.4vw, 5.4rem);
   font-weight: 900;
   letter-spacing: 0;
-  line-height: 0.9;
+  line-height: 0.92;
   text-transform: uppercase;
 }
 
@@ -109,7 +113,7 @@
   grid-area: copy;
   max-width: 360px;
   margin: var(--space-4) 0 0;
-  color: #456044;
+  color: var(--color-text-muted);
   font-size: 1.08rem;
 }
 
@@ -135,26 +139,31 @@
   grid-template-rows: 190px auto auto;
   gap: var(--space-2);
   min-width: 0;
-  color: #274428;
+  padding: var(--space-2);
+  border: 1px solid rgba(222, 151, 180, 0.28);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--color-primary-dark);
   text-align: center;
 }
 
 .seasonal-card:hover {
+  border-color: var(--color-primary);
   transform: translateY(-2px);
 }
 
 .seasonal-card img {
   width: 100%;
   height: 190px;
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   object-fit: cover;
   object-position: center;
-  filter: drop-shadow(0 18px 16px rgba(39, 68, 40, 0.16));
+  filter: saturate(1.08) brightness(1.04);
 }
 
 .seasonal-card span {
   min-height: 44px;
-  color: #274428;
+  color: var(--color-primary-dark);
   font-size: 0.78rem;
   font-weight: 900;
   line-height: 1.18;
@@ -177,14 +186,14 @@
 }
 
 .btn-primary {
-  border: 2px solid #274428;
-  background: #fff;
-  color: #274428;
-  box-shadow: none;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(217, 95, 147, 0.24);
 }
 
 .btn-primary:hover {
-  background: #274428;
+  background: var(--color-primary-dark);
   color: #fff;
 }
 
@@ -335,7 +344,7 @@
       "copy"
       "actions"
       "menu";
-    border-radius: 38% 38% 0 0 / 7% 7% 0 0;
+    border-radius: 24px;
     padding: 48px 20px 28px;
   }
 
