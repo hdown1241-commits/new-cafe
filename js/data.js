@@ -1,3 +1,12 @@
+const getDataAssetRoot = () => {
+  const scriptPath = document.currentScript?.getAttribute("src") || "";
+  if (scriptPath.startsWith("../../")) return "../../";
+  if (scriptPath.startsWith("../")) return "../";
+  return "./";
+};
+
+const DATA_ASSET_ROOT = getDataAssetRoot();
+
 const CAFE_CATEGORIES = [
   { id: "coffee", name: "커피" },
   { id: "non-coffee", name: "논커피" },
@@ -64,8 +73,7 @@ const CAFE_MENUS = [
     name: "Grapefruit Mango Coco",
     description: "Pink grapefruit, mango puree, and coconut cream blended for a bright seasonal drink.",
     price: 6500,
-    image:
-      "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&w=900&q=80",
+    image: `${DATA_ASSET_ROOT}assets/seasonal-mango.png`,
     isSignature: true,
     isSeasonal: true,
     isAvailable: true,
@@ -76,8 +84,7 @@ const CAFE_MENUS = [
     name: "Sea Salt Foam Black Tea",
     description: "Iced black tea finished with a soft sea-salt cream foam.",
     price: 5900,
-    image:
-      "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80",
+    image: `${DATA_ASSET_ROOT}assets/seasonal-tea.png`,
     isSignature: true,
     isSeasonal: true,
     isAvailable: true,
@@ -88,8 +95,7 @@ const CAFE_MENUS = [
     name: "Light Yuja Lemon Blended",
     description: "Yuja, lemon, and ice blended into a fresh golden summer cooler.",
     price: 6200,
-    image:
-      "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=80",
+    image: `${DATA_ASSET_ROOT}assets/seasonal-yuja.png`,
     isSignature: true,
     isSeasonal: true,
     isAvailable: true,
@@ -100,8 +106,7 @@ const CAFE_MENUS = [
     name: "Watermelon Juice Blended",
     description: "Sweet watermelon blended with ice for a vivid pink seasonal refresher.",
     price: 6100,
-    image:
-      "https://images.unsplash.com/photo-1525385133512-2f3bdd039054?auto=format&fit=crop&w=900&q=80",
+    image: `${DATA_ASSET_ROOT}assets/seasonal-watermelon.png`,
     isSignature: true,
     isSeasonal: true,
     isAvailable: true,
