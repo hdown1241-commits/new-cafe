@@ -125,15 +125,16 @@
 .seasonal-showcase {
   grid-area: menu;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0px, 0.7vw, 8px);
+  grid-template-columns: 0.58fr repeat(4, minmax(0, 1fr)) 0.58fr;
+  gap: 0;
   align-self: center;
   min-width: 0;
   min-height: 300px;
+  aspect-ratio: 1692 / 930;
   border-radius: 24px;
   background-image: url("./assets/seasonal-drinks-hero.png");
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   box-shadow: 0 18px 28px rgba(142, 53, 93, 0.14);
   overflow: hidden;
 }
@@ -143,10 +144,26 @@
   align-items: flex-end;
   justify-content: center;
   min-width: 0;
-  min-height: 300px;
+  min-height: 100%;
   padding: 0 var(--space-1) var(--space-3);
   color: var(--color-primary-dark);
   text-align: center;
+}
+
+.seasonal-card--mango {
+  grid-column: 2;
+}
+
+.seasonal-card--tea {
+  grid-column: 3;
+}
+
+.seasonal-card--yuja {
+  grid-column: 4;
+}
+
+.seasonal-card--watermelon {
+  grid-column: 5;
 }
 
 .seasonal-card:hover {
@@ -339,7 +356,7 @@
   }
 
   .seasonal-showcase {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 0.58fr repeat(4, minmax(0, 1fr)) 0.58fr;
     min-height: 360px;
     margin-top: var(--space-5);
   }
