@@ -1,5 +1,9 @@
 const signatureGrid = document.querySelector("#signatureGrid");
 const cartCount = document.querySelector("#cartCount");
+const seasonalSlides = Array.from(document.querySelectorAll(".seasonal-slide"));
+const seasonalDots = document.querySelector(".seasonal-dots");
+const seasonalPrevButton = document.querySelector("[data-seasonal-prev]");
+const seasonalNextButton = document.querySelector("[data-seasonal-next]");
 
 const fallbackMenus = [
   {
@@ -75,5 +79,64 @@ const updateCartCount = () => {
   cartCount.textContent = window.CafeUtils?.getCartCount ? window.CafeUtils.getCartCount() : 0;
 };
 
+const setupSeasonalSlider = () => {
+  if (seasonalSlides.length === 0 || !seasonalDots) return;
+
+  let activeIndex = 0;
+  let timerId;
+
+  seasonalDots.innerHTML = seasonalSlides
+    .map(
+      (_, index) => `
+        <button
+          class="seasonal-dot${index === 0 ? " is-active" : ""}"
+          type="button"
+          aria-label="Show seasonal drink ${index + 1}"
+          data-seasonal-dot="${index}"
+        ></button>
+      `
+    )
+    .join("");
+
+  const dots = Array.from(seasonalDots.querySelectorAll(".seasonal-dot"));
+
+  const showSlide = (nextIndex) => {
+    activeIndex = (nextIndex + seasonalSlides.length) % seasonalSlides.length;
+
+    seasonalSlides.forEach((slide, index) => {
+      slide.classList.toggle("is-active", index === activeIndex);
+    });
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("is-active", index === activeIndex);
+    });
+  };
+
+  const restart = () => {
+    clearInterval(timerId);
+    timerId = setInterval(() => showSlide(activeIndex + 1), 3500);
+  };
+
+  seasonalPrevButton?.addEventListener("click", () => {
+    showSlide(activeIndex - 1);
+    restart();
+  });
+
+  seasonalNextButton?.addEventListener("click", () => {
+    showSlide(activeIndex + 1);
+    restart();
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      showSlide(Number(dot.dataset.seasonalDot));
+      restart();
+    });
+  });
+
+  restart();
+};
+
+setupSeasonalSlider();
 renderSignatures();
 updateCartCount();
