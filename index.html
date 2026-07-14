@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>new-cafe</title>
     <link rel="stylesheet" href="./css/variables.css?v=20260714-deploy-fix" />
-    <link rel="stylesheet" href="./index.css?v=20260714-hero-slider" />
+    <link rel="stylesheet" href="./index.css?v=20260714-hero-original" />
   </head>
   <body>
     <header class="site-header">
@@ -31,26 +31,19 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="./menus/list.html?category=seasonal">계절 메뉴 보기</a>
           </div>
-          <div class="seasonal-showcase" aria-label="Seasonal drink slider">
-            <div class="seasonal-track">
-              <a class="seasonal-slide seasonal-slide--mango is-active" href="./menus/detail.html?id=6">
-                <span class="seasonal-label">Grapefruit Mango Coco</span>
-              </a>
-              <a class="seasonal-slide seasonal-slide--tea" href="./menus/detail.html?id=7">
-                <span class="seasonal-label">Sea Salt Foam Black Tea</span>
-              </a>
-              <a class="seasonal-slide seasonal-slide--yuja" href="./menus/detail.html?id=8">
-                <span class="seasonal-label">Light Yuja Lemon Blended</span>
-              </a>
-              <a class="seasonal-slide seasonal-slide--watermelon" href="./menus/detail.html?id=9">
-                <span class="seasonal-label">Watermelon Juice Blended</span>
-              </a>
-            </div>
-            <div class="seasonal-controls" aria-label="Seasonal slide controls">
-              <button class="seasonal-button" type="button" data-seasonal-prev aria-label="Previous seasonal drink">‹</button>
-              <div class="seasonal-dots" aria-label="Seasonal slide pages"></div>
-              <button class="seasonal-button" type="button" data-seasonal-next aria-label="Next seasonal drink">›</button>
-            </div>
+          <div class="seasonal-showcase" aria-label="계절 음료">
+            <a class="seasonal-card seasonal-card--mango" href="./menus/detail.html?id=6">
+              <span>Grapefruit Mango Coco</span>
+            </a>
+            <a class="seasonal-card seasonal-card--tea" href="./menus/detail.html?id=7">
+              <span>Sea Salt Foam Black Tea</span>
+            </a>
+            <a class="seasonal-card seasonal-card--yuja" href="./menus/detail.html?id=8">
+              <span>Light Yuja Lemon Blended</span>
+            </a>
+            <a class="seasonal-card seasonal-card--watermelon" href="./menus/detail.html?id=9">
+              <span>Watermelon Juice Blended</span>
+            </a>
           </div>
         </div>
       </section>
@@ -84,6 +77,6 @@
 
     <script src="./js/data.js?v=20260714-deploy-fix"></script>
     <script src="./js/utils.js?v=20260714-order-line"></script>
-    <script src="./index.js?v=20260714-hero-slider"></script>
+    <script src="./index.js?v=20260714-hero-original"></script>
   </body>
 </html>
