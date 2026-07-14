@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지 | new-cafe</title>
     <link rel="stylesheet" href="/css/variables.css?v=20260714-path-fix" />
-    <link rel="stylesheet" href="/my/index.css?v=20260714-path-fix" />
+    <link rel="stylesheet" href="/my/index.css?v=20260714-order-line" />
     <script>
       if (!localStorage.getItem("new-cafe-auth-user")) {
         location.replace("/auth/login.html?returnTo=" + encodeURIComponent(location.pathname + location.search));
@@ -50,6 +50,10 @@
                 <dt>가입일</dt>
                 <dd id="profileJoinedAt">2026.03.02</dd>
               </div>
+              <div>
+                <dt>호칭</dt>
+                <dd id="profileGender">주인님</dd>
+              </div>
             </dl>
           </div>
 
@@ -61,6 +65,14 @@
             <div class="form-group">
               <label for="emailInput">이메일</label>
               <input type="email" id="emailInput" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="genderInput">호칭</label>
+              <select id="genderInput" name="gender">
+                <option value="princess">공주님</option>
+                <option value="prince">왕자님</option>
+                <option value="guest">주인님</option>
+              </select>
             </div>
             <div class="form-actions">
               <button type="button" id="cancelEditButton" class="btn-ghost">취소</button>
@@ -116,7 +128,7 @@
     </main>
 
     <script src="/js/data.js?v=20260714-path-fix"></script>
-    <script src="/js/utils.js?v=20260714-logout-cart"></script>
-    <script src="/my/index.js?v=20260714-path-fix"></script>
+    <script src="/js/utils.js?v=20260714-order-line"></script>
+    <script src="/my/index.js?v=20260714-order-line"></script>
   </body>
 </html>

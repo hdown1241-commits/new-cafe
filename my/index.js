@@ -10,6 +10,7 @@ const PROFILE_STORAGE_KEY = "new-cafe-profile-v2";
 const DEFAULT_PROFILE = {
   name: "\uc784\uc7ac\ud604",
   email: "limjh@example.com",
+  gender: "guest",
   joinedAt: "2026.03.02",
 };
 
@@ -26,12 +27,14 @@ const profileView = document.querySelector("#profileView");
 const profileName = document.querySelector("#profileName");
 const profileEmail = document.querySelector("#profileEmail");
 const profileJoinedAt = document.querySelector("#profileJoinedAt");
+const profileGender = document.querySelector("#profileGender");
 
 const editProfileButton = document.querySelector("#editProfileButton");
 const cancelEditButton = document.querySelector("#cancelEditButton");
 const profileEditForm = document.querySelector("#profileEditForm");
 const nameInput = document.querySelector("#nameInput");
 const emailInput = document.querySelector("#emailInput");
+const genderInput = document.querySelector("#genderInput");
 
 const withdrawButton = document.querySelector("#withdrawButton");
 
@@ -50,8 +53,13 @@ const readProfile = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY));
     if (stored && stored.name && stored.email) {
-      if (currentUser && (stored.email !== currentUser.email || stored.name !== currentUser.name)) {
-        const synced = { ...stored, name: currentUser.name, email: currentUser.email };
+      if (
+        currentUser &&
+        (stored.email !== currentUser.email ||
+          stored.name !== currentUser.name ||
+          stored.gender !== currentUser.gender)
+      ) {
+        const synced = { ...stored, name: currentUser.name, email: currentUser.email, gender: currentUser.gender || stored.gender || "guest" };
         localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(synced));
         return synced;
       }
@@ -62,14 +70,30 @@ const readProfile = () => {
   }
 
   localStorage.removeItem(LEGACY_PROFILE_STORAGE_KEY);
-  const profile = currentUser ? { ...DEFAULT_PROFILE, name: currentUser.name, email: currentUser.email } : DEFAULT_PROFILE;
+  const profile = currentUser
+    ? { ...DEFAULT_PROFILE, name: currentUser.name, email: currentUser.email, gender: currentUser.gender || "guest" }
+    : DEFAULT_PROFILE;
   localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
   return profile;
 };
 
 const saveProfile = (profile) => {
   localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+  const currentUser = window.CafeUtils.getCurrentUser();
+  if (currentUser) {
+    window.CafeUtils.login({
+      name: profile.name,
+      email: profile.email,
+      gender: profile.gender || currentUser.gender || "guest",
+    });
+  }
   return profile;
+};
+
+const getHonorific = (gender) => {
+  if (gender === "princess") return "공주님";
+  if (gender === "prince") return "왕자님";
+  return "주인님";
 };
 
 const setText = (element, text) => {
@@ -141,6 +165,7 @@ const renderProfile = () => {
   profileName.textContent = profile.name;
   profileEmail.textContent = profile.email;
   profileJoinedAt.textContent = profile.joinedAt;
+  profileGender.textContent = getHonorific(profile.gender);
   profileAvatar.textContent = profile.name.slice(0, 1);
 };
 
@@ -149,6 +174,7 @@ const openEditForm = () => {
 
   nameInput.value = profile.name;
   emailInput.value = profile.email;
+  genderInput.value = profile.gender || "guest";
   profileView.hidden = true;
   profileEditForm.hidden = false;
   nameInput.focus();
@@ -172,11 +198,12 @@ profileEditForm.addEventListener("submit", (event) => {
 
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
+  const gender = genderInput.value;
 
   if (!name || !email) return;
 
   const profile = readProfile();
-  saveProfile({ ...profile, name, email });
+  saveProfile({ ...profile, name, email, gender });
   renderProfile();
   closeEditForm();
 });
