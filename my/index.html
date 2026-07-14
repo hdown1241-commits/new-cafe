@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지 | new-cafe</title>
-    <link rel="stylesheet" href="../css/variables.css?v=20260714-deploy-fix" />
-    <link rel="stylesheet" href="./index.css?v=20260714-deploy-fix" />
+    <link rel="stylesheet" href="/css/variables.css?v=20260714-path-fix" />
+    <link rel="stylesheet" href="/my/index.css?v=20260714-path-fix" />
     <script>
       if (!localStorage.getItem("new-cafe-auth-user")) {
-        location.replace("../auth/login.html?returnTo=" + encodeURIComponent(location.pathname + location.search));
+        location.replace("/auth/login.html?returnTo=" + encodeURIComponent(location.pathname + location.search));
       }
     </script>
   </head>
@@ -115,8 +115,8 @@
       </section>
     </main>
 
-    <script src="../js/data.js?v=20260714-deploy-fix"></script>
-    <script src="../js/utils.js?v=20260714-deploy-fix"></script>
-    <script src="./index.js?v=20260714-deploy-fix"></script>
+    <script src="/js/data.js?v=20260714-path-fix"></script>
+    <script src="/js/utils.js?v=20260714-path-fix"></script>
+    <script src="/my/index.js?v=20260714-path-fix"></script>
   </body>
 </html>
