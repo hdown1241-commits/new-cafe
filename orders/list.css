@@ -25,8 +25,10 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  min-width: 0;
   color: var(--color-text-muted);
   font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 .header-nav a {
@@ -230,6 +232,7 @@
   .header-nav {
     width: 100%;
     overflow-x: auto;
+    padding-bottom: var(--space-1);
   }
 
   .summary-grid {
@@ -238,5 +241,15 @@
 
   .order-actions {
     justify-items: start;
+  }
+}
+
+@media (max-width: 460px) {
+  .container {
+    width: min(100% - 20px, var(--max-width));
+  }
+
+  .orders-page {
+    padding-top: var(--space-5);
   }
 }
