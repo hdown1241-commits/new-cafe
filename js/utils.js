@@ -1,4 +1,5 @@
 const CART_STORAGE_KEY = "new-cafe-cart";
+const LEGACY_CART_STORAGE_KEYS = ["cart", "basket", "new-cafe-basket"];
 const AUTH_STORAGE_KEY = "new-cafe-auth-user";
 
 const getAppRoot = () => {
@@ -17,18 +18,54 @@ const formatPrice = (price) =>
     maximumFractionDigits: 0,
   }).format(price);
 
-const readCart = () => {
+const normalizeCartItem = (item) => {
+  if (!item || typeof item !== "object") return null;
+
+  const menu = item.menu || {};
+  const id = Number(item.id ?? item.menuId ?? menu.id);
+  const quantity = Number(item.quantity ?? item.count ?? item.qty ?? 1);
+  const price = Number(item.price ?? menu.price);
+  const name = item.name ?? menu.name;
+
+  if (!Number.isFinite(id) || !name || !Number.isFinite(price)) return null;
+
+  return {
+    id,
+    name,
+    price,
+    quantity: Number.isFinite(quantity) && quantity > 0 ? quantity : 1,
+  };
+};
+
+const readStoredCart = (key) => {
   try {
-    return JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+    const stored = JSON.parse(localStorage.getItem(key));
+    const items = Array.isArray(stored) ? stored : stored?.items;
+    if (!Array.isArray(items)) return [];
+
+    return items.map(normalizeCartItem).filter(Boolean);
   } catch {
     return [];
   }
 };
 
+const readCart = () => {
+  const cart = readStoredCart(CART_STORAGE_KEY);
+  if (cart.length > 0) return cart;
+
+  const legacyCart = LEGACY_CART_STORAGE_KEYS.flatMap(readStoredCart);
+  if (legacyCart.length > 0) {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(legacyCart));
+  }
+
+  return legacyCart;
+};
+
 const saveCart = (cart) => {
-  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  const normalizedCart = cart.map(normalizeCartItem).filter(Boolean);
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(normalizedCart));
   window.dispatchEvent(new CustomEvent("cafe:cart-updated"));
-  return cart;
+  return normalizedCart;
 };
 
 const getCartCount = () =>

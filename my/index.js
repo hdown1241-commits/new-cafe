@@ -15,6 +15,9 @@ const cartCount = document.querySelector("#cartCount");
 const basketCount = document.querySelector("#basketCount");
 const basketTotal = document.querySelector("#basketTotal");
 const orderCount = document.querySelector("#orderCount");
+const menuQuickText = document.querySelector('.quick-card[href="../menus/list.html"] p');
+const basketQuickText = document.querySelector('.quick-card[href="../basket/list.html"] p');
+const ordersQuickText = document.querySelector('.quick-card[href="../orders/list.html"] p');
 
 const profileAvatar = document.querySelector("#profileAvatar");
 const profileView = document.querySelector("#profileView");
@@ -73,11 +76,24 @@ const updateCartCount = () => {
 
 const renderSummary = () => {
   const currentCartCount = window.CafeUtils.getCartCount();
+  const currentOrderCount = readOrderCount();
+  const availableMenuCount =
+    window.CafeData?.menus.filter((menu) => menu.isAvailable).length || 0;
 
   cartCount.textContent = currentCartCount;
   basketCount.textContent = currentCartCount;
   basketTotal.textContent = window.CafeUtils.formatPrice(window.CafeUtils.getCartTotal());
-  orderCount.textContent = readOrderCount();
+  orderCount.textContent = currentOrderCount;
+
+  menuQuickText.textContent = `판매 중인 메뉴 ${availableMenuCount}개를 둘러보세요.`;
+  basketQuickText.textContent =
+    currentCartCount > 0
+      ? `담긴 메뉴 ${currentCartCount}개를 확인하고 수량을 조절하세요.`
+      : "담은 메뉴가 없습니다. 원하는 음료를 담아보세요.";
+  ordersQuickText.textContent =
+    currentOrderCount > 0
+      ? `전체 주문 ${currentOrderCount}건과 픽업 상태를 확인하세요.`
+      : "아직 주문 내역이 없습니다.";
 };
 
 const renderProfile = () => {
