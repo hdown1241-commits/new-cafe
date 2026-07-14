@@ -1,4 +1,6 @@
-window.CafeUtils.requireAuth();
+if (!window.CafeUtils.requireAuth()) {
+  throw new Error("Login required");
+}
 
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
 const CART_STORAGE_KEY = "new-cafe-cart";
