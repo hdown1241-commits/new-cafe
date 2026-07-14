@@ -320,6 +320,13 @@
   font-size: 1.15rem;
 }
 
+.quick-card em {
+  color: var(--color-primary-dark);
+  font-size: 1.45rem;
+  font-style: normal;
+  font-weight: 900;
+}
+
 .quick-card p {
   margin: 0;
   color: var(--color-text-muted);

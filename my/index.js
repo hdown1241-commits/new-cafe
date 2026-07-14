@@ -15,9 +15,12 @@ const cartCount = document.querySelector("#cartCount");
 const basketCount = document.querySelector("#basketCount");
 const basketTotal = document.querySelector("#basketTotal");
 const orderCount = document.querySelector("#orderCount");
-const menuQuickText = document.querySelector('.quick-card[href="../menus/list.html"] p');
-const basketQuickText = document.querySelector('.quick-card[href="../basket/list.html"] p');
-const ordersQuickText = document.querySelector('.quick-card[href="../orders/list.html"] p');
+const quickMenuCount = document.querySelector("#quickMenuCount");
+const quickBasketCount = document.querySelector("#quickBasketCount");
+const quickOrderCount = document.querySelector("#quickOrderCount");
+const menuQuickText = document.querySelector("#quickMenuCount + p");
+const basketQuickText = document.querySelector("#quickBasketCount + p");
+const ordersQuickText = document.querySelector("#quickOrderCount + p");
 
 const profileAvatar = document.querySelector("#profileAvatar");
 const profileView = document.querySelector("#profileView");
@@ -85,6 +88,9 @@ const renderSummary = () => {
   basketTotal.textContent = window.CafeUtils.formatPrice(window.CafeUtils.getCartTotal());
   orderCount.textContent = currentOrderCount;
 
+  quickMenuCount.textContent = `${availableMenuCount}개`;
+  quickBasketCount.textContent = `${currentCartCount}개`;
+  quickOrderCount.textContent = `${currentOrderCount}건`;
   menuQuickText.textContent = `판매 중인 메뉴 ${availableMenuCount}개를 둘러보세요.`;
   basketQuickText.textContent =
     currentCartCount > 0
