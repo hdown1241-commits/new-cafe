@@ -15,12 +15,9 @@ const cartCount = document.querySelector("#cartCount");
 const basketCount = document.querySelector("#basketCount");
 const basketTotal = document.querySelector("#basketTotal");
 const orderCount = document.querySelector("#orderCount");
-const quickMenuCount = document.querySelector("#quickMenuCount");
-const quickBasketCount = document.querySelector("#quickBasketCount");
-const quickOrderCount = document.querySelector("#quickOrderCount");
-const menuQuickText = document.querySelector("#quickMenuCount + p");
-const basketQuickText = document.querySelector("#quickBasketCount + p");
-const ordersQuickText = document.querySelector("#quickOrderCount + p");
+const menuQuickCard = document.querySelector('.quick-card[href="../menus/list.html"]');
+const basketQuickCard = document.querySelector('.quick-card[href="../basket/list.html"]');
+const ordersQuickCard = document.querySelector('.quick-card[href="../orders/list.html"]');
 
 const profileAvatar = document.querySelector("#profileAvatar");
 const profileView = document.querySelector("#profileView");
@@ -73,33 +70,67 @@ const saveProfile = (profile) => {
   return profile;
 };
 
-const updateCartCount = () => {
-  cartCount.textContent = window.CafeUtils.getCartCount();
+const setText = (element, text) => {
+  if (element) element.textContent = text;
+};
+
+const getQuickCountElement = (card, id) => {
+  if (!card) return null;
+
+  let countElement = card.querySelector(`#${id}`);
+  if (!countElement) {
+    countElement = document.createElement("em");
+    countElement.id = id;
+    card.querySelector("strong")?.insertAdjacentElement("afterend", countElement);
+  }
+
+  return countElement;
+};
+
+const getQuickTextElement = (card) => {
+  if (!card) return null;
+
+  let textElement = card.querySelector("p");
+  if (!textElement) {
+    textElement = document.createElement("p");
+    card.appendChild(textElement);
+  }
+
+  return textElement;
 };
 
 const renderSummary = () => {
+  const quickMenuCount = getQuickCountElement(menuQuickCard, "quickMenuCount");
+  const quickBasketCount = getQuickCountElement(basketQuickCard, "quickBasketCount");
+  const quickOrderCount = getQuickCountElement(ordersQuickCard, "quickOrderCount");
+  const menuQuickText = getQuickTextElement(menuQuickCard);
+  const basketQuickText = getQuickTextElement(basketQuickCard);
+  const ordersQuickText = getQuickTextElement(ordersQuickCard);
   const currentCartCount = window.CafeUtils.getCartCount();
   const currentOrderCount = readOrderCount();
   const availableMenuCount =
     window.CafeData?.menus.filter((menu) => menu.isAvailable).length || 0;
 
-  cartCount.textContent = currentCartCount;
-  basketCount.textContent = currentCartCount;
-  basketTotal.textContent = window.CafeUtils.formatPrice(window.CafeUtils.getCartTotal());
-  orderCount.textContent = currentOrderCount;
-
-  quickMenuCount.textContent = `${availableMenuCount}개`;
-  quickBasketCount.textContent = `${currentCartCount}개`;
-  quickOrderCount.textContent = `${currentOrderCount}건`;
-  menuQuickText.textContent = `판매 중인 메뉴 ${availableMenuCount}개를 둘러보세요.`;
-  basketQuickText.textContent =
+  setText(cartCount, currentCartCount);
+  setText(basketCount, currentCartCount);
+  setText(basketTotal, window.CafeUtils.formatPrice(window.CafeUtils.getCartTotal()));
+  setText(orderCount, currentOrderCount);
+  setText(quickMenuCount, `${availableMenuCount}개`);
+  setText(quickBasketCount, `${currentCartCount}개`);
+  setText(quickOrderCount, `${currentOrderCount}건`);
+  setText(menuQuickText, `판매 중인 메뉴 ${availableMenuCount}개를 둘러보세요.`);
+  setText(
+    basketQuickText,
     currentCartCount > 0
       ? `담긴 메뉴 ${currentCartCount}개를 확인하고 수량을 조절하세요.`
-      : "담은 메뉴가 없습니다. 원하는 음료를 담아보세요.";
-  ordersQuickText.textContent =
+      : "담은 메뉴가 없습니다. 원하는 음료를 담아보세요."
+  );
+  setText(
+    ordersQuickText,
     currentOrderCount > 0
       ? `전체 주문 ${currentOrderCount}건과 픽업 상태를 확인하세요.`
-      : "아직 주문 내역이 없습니다.";
+      : "아직 주문 내역이 없습니다."
+  );
 };
 
 const renderProfile = () => {
