@@ -2,6 +2,7 @@
   display: flex;
   min-height: 100vh;
   align-items: stretch;
+  overflow-x: hidden;
 }
 
 .admin-sidebar {
@@ -25,6 +26,8 @@
   gap: var(--space-2);
   font-size: 1.15rem;
   font-weight: 800;
+  line-height: 1.25;
+  word-break: keep-all;
 }
 
 .admin-sidebar__brand-mark {
@@ -109,7 +112,9 @@
 }
 
 .admin-main {
+  width: 100%;
   max-width: 1120px;
+  margin: 0 auto;
   padding: var(--space-6) var(--space-7) var(--space-7);
 }
 
@@ -148,7 +153,7 @@
 
 .stat-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
   gap: var(--space-4);
   margin-bottom: var(--space-6);
 }
@@ -163,7 +168,11 @@
 }
 
 .stat-card {
+  display: grid;
+  align-content: space-between;
+  min-height: 128px;
   padding: var(--space-4);
+  min-width: 0;
 }
 
 .stat-card__label {
@@ -175,18 +184,21 @@
 .stat-card__value {
   margin: 0;
   color: var(--color-primary-dark);
-  font-size: 1.65rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.65rem);
   font-weight: 900;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(300px, 0.95fr) minmax(340px, 1.05fr);
   gap: var(--space-4);
 }
 
 .dashboard-panel {
   padding: var(--space-5);
+  min-width: 0;
 }
 
 .panel-heading {
@@ -217,20 +229,25 @@
   padding: var(--space-3);
   border-radius: var(--radius-sm);
   background: var(--color-surface-soft);
+  min-width: 0;
 }
 
 .summary-row strong,
 .order-row strong {
   color: var(--color-text);
+  overflow-wrap: anywhere;
 }
 
 .summary-row span,
 .order-row span {
   color: var(--color-text-muted);
   font-size: 0.88rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .status-badge {
+  justify-self: end;
   padding: 4px 8px;
   border-radius: 999px;
   background: var(--color-primary-soft);
@@ -251,15 +268,18 @@
 
 .quick-actions {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(210px, 1fr));
   gap: var(--space-4);
   margin-top: var(--space-4);
 }
 
 .quick-action {
   display: grid;
+  align-content: start;
   gap: var(--space-2);
+  min-height: 118px;
   padding: var(--space-4);
+  min-width: 0;
 }
 
 .quick-action:hover {
@@ -275,6 +295,8 @@
 
 .quick-action strong {
   color: var(--color-text);
+  line-height: 1.35;
+  word-break: keep-all;
 }
 
 @media (max-width: 900px) {
@@ -288,6 +310,13 @@
     position: static;
     width: 100%;
     height: auto;
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .admin-sidebar__nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .admin-main,
@@ -300,5 +329,31 @@
   .dashboard-grid,
   .quick-actions {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-sidebar__nav {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-topbar {
+    align-items: flex-start;
+  }
+
+  .panel-heading {
+    align-items: stretch;
+  }
+
+  .panel-heading .btn {
+    width: 100%;
+  }
+
+  .order-row {
+    grid-template-columns: 1fr;
+  }
+
+  .status-badge {
+    justify-self: start;
   }
 }

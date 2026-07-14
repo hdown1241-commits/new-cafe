@@ -24,6 +24,8 @@
 .header-nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: var(--space-2);
   color: var(--color-text-muted);
   font-size: 0.95rem;
@@ -70,7 +72,7 @@
 
 .profile-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-5);
   padding: var(--space-5);
   margin-bottom: var(--space-5);
@@ -95,11 +97,13 @@
 }
 
 .profile-info {
+  flex: 1;
   min-width: 0;
 }
 
 .profile-name-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-2);
@@ -109,6 +113,7 @@
 .profile-name-row h2 {
   margin: 0;
   font-size: 1.35rem;
+  word-break: keep-all;
 }
 
 .badge {
@@ -121,6 +126,7 @@
 }
 
 .edit-button {
+  justify-self: end;
   margin-left: auto;
   min-height: 34px;
   padding: 0 12px;
@@ -265,14 +271,16 @@
 
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
   gap: var(--space-4);
   margin-bottom: var(--space-6);
 }
 
 .summary-card {
   display: grid;
+  align-content: space-between;
   gap: var(--space-2);
+  min-height: 118px;
   padding: var(--space-4);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -287,19 +295,22 @@
 
 .summary-card strong {
   color: var(--color-primary-dark);
-  font-size: 1.45rem;
+  font-size: clamp(1.25rem, 3vw, 1.45rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .quick-links {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(210px, 1fr));
   gap: var(--space-4);
 }
 
 .quick-card {
   display: grid;
+  grid-template-rows: auto auto auto 1fr;
   gap: var(--space-2);
-  min-height: 150px;
+  min-height: 176px;
   padding: var(--space-4);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -318,18 +329,22 @@
 
 .quick-card strong {
   font-size: 1.15rem;
+  line-height: 1.2;
 }
 
 .quick-card em {
   color: var(--color-primary-dark);
-  font-size: 1.45rem;
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
   font-style: normal;
   font-weight: 900;
+  line-height: 1.1;
 }
 
 .quick-card p {
   margin: 0;
   color: var(--color-text-muted);
+  line-height: 1.45;
+  word-break: keep-all;
 }
 
 @media (max-width: 720px) {
@@ -347,6 +362,20 @@
   .profile-card {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .profile-info {
+    width: 100%;
+  }
+
+  .profile-name-row {
+    grid-template-columns: auto auto;
+  }
+
+  .edit-button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-left: 0;
   }
 
   .account-actions {
