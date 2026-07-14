@@ -124,8 +124,6 @@ menuGrid.addEventListener("click", (event) => {
   const button = event.target.closest("[data-cart-id]");
   if (!button) return;
 
-  if (!window.CafeUtils.requireAuth()) return;
-
   const menu = window.CafeUtils.getMenuById(button.dataset.cartId);
   if (!menu || !menu.isAvailable) return;
 

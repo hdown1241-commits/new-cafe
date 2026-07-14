@@ -61,9 +61,16 @@ const readCart = () => {
   return legacyCart;
 };
 
+const updateCartBadges = () => {
+  document.querySelectorAll("#cartCount").forEach((badge) => {
+    badge.textContent = getCartCount();
+  });
+};
+
 const saveCart = (cart) => {
   const normalizedCart = cart.map(normalizeCartItem).filter(Boolean);
   localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(normalizedCart));
+  updateCartBadges();
   window.dispatchEvent(new CustomEvent("cafe:cart-updated"));
   return normalizedCart;
 };
@@ -232,7 +239,9 @@ window.CafeUtils = {
   renderAuthNav,
   requireAuth,
   requireAdminAccess,
+  updateCartBadges,
   updateCartItem,
 };
 
 renderAuthNav();
+updateCartBadges();
