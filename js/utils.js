@@ -212,6 +212,10 @@ const login = ({ name, email }) => {
 
 const logout = () => {
   localStorage.removeItem(CAFE_AUTH_STORAGE_KEY);
+  localStorage.removeItem(CAFE_CART_STORAGE_KEY);
+  CAFE_LEGACY_CART_STORAGE_KEYS.forEach((key) => localStorage.removeItem(key));
+  updateCartBadges();
+  window.dispatchEvent(new CustomEvent("cafe:cart-updated"));
 };
 
 const getReturnTo = () => {
