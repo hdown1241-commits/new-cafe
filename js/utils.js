@@ -5,6 +5,8 @@ const CAFE_ORDERS_STORAGE_KEY = "new-cafe-orders";
 
 const getAppRoot = () => {
   const scriptPath = document.currentScript?.getAttribute("src") || "";
+  if (scriptPath.startsWith("/new-cafe/")) return "/new-cafe/";
+  if (scriptPath.startsWith("/")) return "/";
   if (scriptPath.startsWith("../../")) return "../../";
   if (scriptPath.startsWith("../")) return "../";
   return "./";
