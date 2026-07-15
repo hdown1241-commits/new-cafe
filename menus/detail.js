@@ -3,7 +3,10 @@ const notFoundMessage = document.querySelector("#notFoundMessage");
 const cartCount = document.querySelector("#cartCount");
 
 const params = new URLSearchParams(window.location.search);
-const menu = window.CafeUtils.getMenuById(params.get("id"));
+const getDefaultMenu = () =>
+  window.CafeData?.menus.find((item) => item.isAvailable) || window.CafeData?.menus[0];
+
+const menu = window.CafeUtils.getMenuById(params.get("id")) || getDefaultMenu();
 
 const getCategoryName = (categoryId) =>
   window.CafeData.categories.find((category) => category.id === categoryId)?.name || "메뉴";
