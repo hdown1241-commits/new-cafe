@@ -72,7 +72,7 @@ const renderMenus = () => {
     .map(
       (menu) => `
         <article class="menu-card">
-          <a class="menu-card-image" href="./detail.html?id=${menu.id}">
+          <a class="menu-card-image" href="./detail.html?id=${menu.id}#id=${menu.id}">
             <img src="${menu.image}" alt="${menu.name}" loading="lazy" />
           </a>
           <div>
@@ -89,7 +89,7 @@ const renderMenus = () => {
           <div class="menu-card-footer">
             <span class="price">${window.CafeUtils.formatPrice(menu.price)}</span>
             <div class="menu-actions">
-              <a class="detail-link" href="./detail.html?id=${menu.id}">보기</a>
+              <a class="detail-link" href="./detail.html?id=${menu.id}#id=${menu.id}">보기</a>
               <button
                 class="cart-button"
                 type="button"

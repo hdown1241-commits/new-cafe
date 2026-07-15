@@ -62,7 +62,7 @@ const renderSignatures = () => {
             <p>${menu.description || "카페 메뉴"}</p>
             <div class="menu-card-footer">
               <span class="price">${formatPrice(menu.price)}</span>
-              <a class="menu-link" href="./menus/detail.html?id=${menu.id}">보기</a>
+              <a class="menu-link" href="./menus/detail.html?id=${menu.id}#id=${menu.id}">보기</a>
             </div>
           </div>
         </article>
