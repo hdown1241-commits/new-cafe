@@ -12,6 +12,7 @@ const fallbackImage =
   "https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg";
 
 const getAppBase = () => {
+  if (window.NEW_CAFE_BASE) return `${window.NEW_CAFE_BASE.replace(/\/$/, "")}/`;
   if (window.location.pathname.startsWith("/new-cafe/")) return "/new-cafe/";
   return "/";
 };

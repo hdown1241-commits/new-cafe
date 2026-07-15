@@ -5,38 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메뉴 상세 | new-cafe</title>
     <script>
-      window.NEW_CAFE_BASE = location.pathname.startsWith("/new-cafe/") ? "/new-cafe" : "";
-      document.write(`<link rel="stylesheet" href="${window.NEW_CAFE_BASE}/css/variables.css?v=20260715-detail-root-fix" />`);
-      document.write(`<link rel="stylesheet" href="${window.NEW_CAFE_BASE}/menus/detail.css?v=20260715-detail-root-fix" />`);
+      window.NEW_CAFE_BASE_CANDIDATES = location.pathname.startsWith("/new-cafe/")
+        ? ["/new-cafe", "", ".."]
+        : ["", "/new-cafe", ".."];
+
+      window.NEW_CAFE_BASE_CANDIDATES.forEach((base) => {
+        document.write(`<link rel="stylesheet" href="${base}/css/variables.css?v=20260715-detail-fallback" />`);
+        document.write(`<link rel="stylesheet" href="${base}/menus/detail.css?v=20260715-detail-fallback" />`);
+      });
     </script>
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="../index.html" data-base-href="/index.html">new-cafe</a>
+        <a class="brand" href="../index.html">new-cafe</a>
         <nav class="header-nav" aria-label="주요 메뉴">
-          <a href="./list.html" data-base-href="/menus/list.html">메뉴</a>
-          <a href="../basket/list.html" data-base-href="/basket/list.html">장바구니 <span id="cartCount">0</span></a>
-          <a href="../orders/list.html" data-base-href="/orders/list.html">주문 내역</a>
-          <a href="../my/index.html" data-base-href="/my/index.html">마이페이지</a>
+          <a href="./list.html">메뉴</a>
+          <a href="../basket/list.html">장바구니 <span id="cartCount">0</span></a>
+          <a href="../orders/list.html">주문 내역</a>
+          <a href="../my/index.html">마이페이지</a>
         </nav>
       </div>
     </header>
 
     <main class="container detail-page">
-      <a class="back-link" href="./list.html" data-base-href="/menus/list.html">메뉴로 돌아가기</a>
+      <a class="back-link" href="./list.html">메뉴로 돌아가기</a>
 
       <section id="detailContent" class="detail-layout" aria-live="polite"></section>
       <p id="notFoundMessage" class="not-found" hidden>메뉴를 찾을 수 없습니다.</p>
     </main>
 
     <script>
-      document.querySelectorAll("[data-base-href]").forEach((link) => {
-        link.href = `${window.NEW_CAFE_BASE}${link.dataset.baseHref}`;
-      });
-      document.write(`<script src="${window.NEW_CAFE_BASE}/js/data.js?v=20260715-detail-root-fix"><\/script>`);
-      document.write(`<script src="${window.NEW_CAFE_BASE}/js/utils.js?v=20260715-detail-root-fix"><\/script>`);
-      document.write(`<script src="${window.NEW_CAFE_BASE}/menus/detail.js?v=20260715-detail-root-fix"><\/script>`);
+      const loadScript = (src) =>
+        new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = src;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.body.appendChild(script);
+        });
+
+      const loadFromCandidates = async (path) => {
+        for (const base of window.NEW_CAFE_BASE_CANDIDATES) {
+          try {
+            await loadScript(`${base}${path}?v=20260715-detail-fallback`);
+            window.NEW_CAFE_BASE = base;
+            return;
+          } catch {
+            // Try the next deployment/live-server base path.
+          }
+        }
+        throw new Error(`Failed to load ${path}`);
+      };
+
+      (async () => {
+        await loadFromCandidates("/js/data.js");
+        await loadFromCandidates("/js/utils.js");
+        await loadFromCandidates("/menus/detail.js");
+      })();
     </script>
   </body>
 </html>
