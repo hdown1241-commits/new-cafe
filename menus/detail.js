@@ -17,19 +17,33 @@ const getCategoryName = (categoryId) =>
 const fallbackImage =
   "https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg";
 
+const seasonalFallbackImages = {
+  6: "seasonal-mango.png",
+  7: "seasonal-tea.png",
+  8: "seasonal-yuja.png",
+  9: "seasonal-watermelon.png",
+};
+
 const getAppBase = () => {
   if (window.NEW_CAFE_BASE) return `${window.NEW_CAFE_BASE.replace(/\/$/, "")}/`;
   if (window.location.pathname.startsWith("/new-cafe/")) return "/new-cafe/";
   return "/";
 };
 
+const getAssetUrl = (filename) => `${getAppBase()}assets/${filename}`;
+
 const getMenuImage = (image) => {
-  if (!image) return fallbackImage;
+  if (!image) return seasonalFallbackImages[menu?.id] ? getAssetUrl(seasonalFallbackImages[menu.id]) : fallbackImage;
   if (/^(https?:)?\/\//.test(image) || image.startsWith("data:")) return image;
-  if (image.startsWith("/")) return `${getAppBase().replace(/\/$/, "")}${image}`;
+  if (image.startsWith("/assets/")) return image;
+  if (image.startsWith("/new-cafe/assets/")) return image;
+  if (image.startsWith("/")) return image;
   if (image.startsWith("assets/")) return `${getAppBase()}${image}`;
   return image;
 };
+
+const getFallbackImage = () =>
+  seasonalFallbackImages[menu?.id] ? getAssetUrl(seasonalFallbackImages[menu.id]) : fallbackImage;
 
 const updateCartCount = () => {
   cartCount.textContent = window.CafeUtils.getCartCount();
@@ -86,7 +100,9 @@ const bindOrderEvents = () => {
   const visualImage = document.querySelector(".menu-visual img");
 
   visualImage.addEventListener("error", () => {
-    visualImage.src = fallbackImage;
+    if (visualImage.src !== getFallbackImage()) {
+      visualImage.src = getFallbackImage();
+    }
   });
 
   const setQuantity = (value) => {

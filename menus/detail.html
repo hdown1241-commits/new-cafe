@@ -48,7 +48,7 @@
       const loadFromCandidates = async (path) => {
         for (const base of window.NEW_CAFE_BASE_CANDIDATES) {
           try {
-            await loadScript(`${base}${path}?v=20260715-detail-id-fix`);
+            await loadScript(`${base}${path}?v=20260715-seasonal-image-fix`);
             window.NEW_CAFE_BASE = base;
             return;
           } catch {
