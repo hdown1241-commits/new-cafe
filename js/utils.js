@@ -14,6 +14,12 @@ const getAppRoot = () => {
 
 const APP_ROOT = getAppRoot();
 
+const getAppBasePath = () => {
+  if (window.location.pathname.startsWith("/new-cafe/")) return "/new-cafe";
+  if (APP_ROOT === "/new-cafe/") return "/new-cafe";
+  return "";
+};
+
 const formatPrice = (price) =>
   new Intl.NumberFormat("ko-KR", {
     style: "currency",
@@ -225,9 +231,12 @@ const getReturnTo = () => {
   return encodeURIComponent(current);
 };
 
+const getLoginUrl = () =>
+  `${getAppBasePath()}/auth/login.html?returnTo=${getReturnTo()}`;
+
 const requireAuth = () => {
   if (isLoggedIn()) return true;
-  window.location.href = `${APP_ROOT}auth/login.html?returnTo=${getReturnTo()}`;
+  window.location.href = getLoginUrl();
   return false;
 };
 
@@ -269,7 +278,7 @@ const renderAuthNav = () => {
       window.location.href = `${APP_ROOT}index.html`;
     });
   } else {
-    authAction.href = `${APP_ROOT}auth/login.html?returnTo=${getReturnTo()}`;
+    authAction.href = getLoginUrl();
     authAction.textContent = "로그인";
   }
 

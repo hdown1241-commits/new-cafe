@@ -6,10 +6,30 @@ const cartCount = document.querySelector("#cartCount");
 const params = new URLSearchParams(window.location.search);
 const returnTo = params.get("returnTo");
 
+const getFallbackReturnTo = () => {
+  const appBase = window.location.pathname.startsWith("/new-cafe/") ? "/new-cafe" : "";
+
+  try {
+    const referrer = new URL(document.referrer);
+    const current = new URL(window.location.href);
+    const isLoginPage = referrer.pathname.endsWith("/auth/login.html");
+
+    if (referrer.origin === current.origin && !isLoginPage) {
+      return `${referrer.pathname}${referrer.search}${referrer.hash}`;
+    }
+  } catch {
+    // Ignore missing or cross-origin referrers.
+  }
+
+  return `${appBase}/my/index.html`;
+};
+
+const redirectAfterLogin = returnTo || getFallbackReturnTo();
+
 cartCount.textContent = window.CafeUtils.getCartCount();
 
-if (window.CafeUtils.isLoggedIn() && returnTo) {
-  window.location.href = returnTo;
+if (window.CafeUtils.isLoggedIn()) {
+  window.location.href = redirectAfterLogin;
 }
 
 loginForm.addEventListener("submit", (event) => {
@@ -21,5 +41,5 @@ loginForm.addEventListener("submit", (event) => {
   if (!name || !email) return;
 
   window.CafeUtils.login({ name, email });
-  window.location.href = returnTo || "../my/index.html";
+  window.location.href = redirectAfterLogin;
 });
