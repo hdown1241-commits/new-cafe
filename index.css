@@ -126,62 +126,142 @@
 
 .seasonal-showcase {
   grid-area: menu;
-  display: grid;
-  grid-template-columns: 0.58fr repeat(4, minmax(0, 1fr)) 0.58fr;
-  gap: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   align-self: center;
   min-width: 0;
-  min-height: 300px;
+  min-height: 380px;
   aspect-ratio: 1692 / 930;
   border-radius: 24px;
-  background-image: url("./assets/seasonal-drinks-hero.png");
-  background-position: center;
-  background-size: 100% 100%;
+  background:
+    linear-gradient(135deg, rgba(255, 248, 252, 0.82), rgba(255, 227, 239, 0.62)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(183, 208, 236, 0.28) 0 14px,
+      rgba(255, 255, 255, 0.36) 14px 28px
+    );
   box-shadow: 0 18px 28px rgba(142, 53, 93, 0.14);
   overflow: hidden;
 }
 
-.seasonal-card {
+.seasonal-track {
+  position: absolute;
+  inset: 0;
+}
+
+.seasonal-slide {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  min-width: 0;
-  min-height: 100%;
-  padding: 0 var(--space-1) var(--space-3);
+  padding: 0 clamp(28px, 6vw, 68px) clamp(72px, 9vw, 104px);
   color: var(--color-primary-dark);
   text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(22px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 
-.seasonal-card--mango {
-  grid-column: 2;
+.seasonal-slide::before {
+  position: absolute;
+  inset: 16px 12px 54px;
+  border-radius: 18px;
+  background-image: url("./assets/seasonal-drinks-hero.png");
+  background-repeat: no-repeat;
+  background-size: 430% auto;
+  filter: saturate(1.08) brightness(1.03);
+  content: "";
 }
 
-.seasonal-card--tea {
-  grid-column: 3;
+.seasonal-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
 }
 
-.seasonal-card--yuja {
-  grid-column: 4;
+.seasonal-slide--mango::before {
+  background-position: 9% center;
 }
 
-.seasonal-card--watermelon {
-  grid-column: 5;
+.seasonal-slide--tea::before {
+  background-position: 36% center;
 }
 
-.seasonal-card:hover {
-  background: rgba(255, 255, 255, 0.12);
+.seasonal-slide--yuja::before {
+  background-position: 64% center;
 }
 
-.seasonal-card span:last-child {
+.seasonal-slide--watermelon::before {
+  background-position: 91% center;
+}
+
+.seasonal-label {
+  position: relative;
+  z-index: 1;
   min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid rgba(222, 151, 180, 0.42);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.82);
   color: var(--color-primary-dark);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 900;
   line-height: 1.18;
-  padding: 6px 8px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-sm);
   text-transform: uppercase;
+}
+
+.seasonal-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 0 0 var(--space-3);
+}
+
+.seasonal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(222, 151, 180, 0.48);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--color-primary-dark);
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.seasonal-button:hover,
+.seasonal-dot:hover,
+.seasonal-dot.is-active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.seasonal-dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.seasonal-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid rgba(142, 53, 93, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
 }
 
 .btn {
@@ -413,11 +493,15 @@
     border-radius: 16px;
   }
 
-  .seasonal-card {
-    padding: 0 2px var(--space-2);
+  .seasonal-slide {
+    padding: 0 var(--space-4) 64px;
   }
 
-  .seasonal-card span:last-child {
+  .seasonal-slide::before {
+    inset: 12px 10px 48px;
+  }
+
+  .seasonal-label {
     min-height: 30px;
     padding: 4px 5px;
     font-size: clamp(0.52rem, 2vw, 0.68rem);
@@ -459,7 +543,7 @@
     aspect-ratio: 1692 / 1040;
   }
 
-  .seasonal-card span:last-child {
+  .seasonal-label {
     display: none;
   }
 
