@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 대시보드 | new-cafe</title>
-    <link rel="stylesheet" href="/css/variables.css?v=20260715-dashboard-fix" />
-    <link rel="stylesheet" href="/admin/index.css?v=20260715-dashboard-fix" />
+    <script>
+      window.NEW_CAFE_BASE = location.pathname.startsWith("/new-cafe/") ? "/new-cafe" : "";
+      document.write(`<link rel="stylesheet" href="${window.NEW_CAFE_BASE}/css/variables.css?v=20260715-live-fix" />`);
+      document.write(`<link rel="stylesheet" href="${window.NEW_CAFE_BASE}/admin/index.css?v=20260715-live-fix" />`);
+    </script>
   </head>
   <body>
     <div class="admin-shell">
@@ -76,13 +79,17 @@
       </div>
     </div>
 
-    <script src="/js/data.js?v=20260715-dashboard-fix"></script>
-    <script src="/js/utils.js?v=20260715-dashboard-fix"></script>
+    <script>
+      document.write(`<script src="${window.NEW_CAFE_BASE}/js/data.js?v=20260715-live-fix"><\/script>`);
+      document.write(`<script src="${window.NEW_CAFE_BASE}/js/utils.js?v=20260715-live-fix"><\/script>`);
+    </script>
     <script>
       if (!window.CafeUtils.requireAdminAccess()) {
-        location.href = "/index.html";
+        location.href = `${window.NEW_CAFE_BASE}/index.html`;
       }
     </script>
-    <script src="/admin/index.js?v=20260715-dashboard-fix"></script>
+    <script>
+      document.write(`<script src="${window.NEW_CAFE_BASE}/admin/index.js?v=20260715-live-fix"><\/script>`);
+    </script>
   </body>
 </html>
