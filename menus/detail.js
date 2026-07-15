@@ -11,6 +11,19 @@ const getCategoryName = (categoryId) =>
 const fallbackImage =
   "https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg";
 
+const getAppBase = () => {
+  if (window.location.pathname.startsWith("/new-cafe/")) return "/new-cafe/";
+  return "/";
+};
+
+const getMenuImage = (image) => {
+  if (!image) return fallbackImage;
+  if (/^(https?:)?\/\//.test(image) || image.startsWith("data:")) return image;
+  if (image.startsWith("/")) return `${getAppBase().replace(/\/$/, "")}${image}`;
+  if (image.startsWith("assets/")) return `${getAppBase()}${image}`;
+  return image;
+};
+
 const updateCartCount = () => {
   cartCount.textContent = window.CafeUtils.getCartCount();
 };
@@ -22,9 +35,11 @@ const renderDetail = () => {
     return;
   }
 
+  const menuImage = getMenuImage(menu.image);
+
   detailContent.innerHTML = `
     <div class="menu-visual">
-      <img src="${menu.image || fallbackImage}" alt="${menu.name}" />
+      <img src="${menuImage}" alt="${menu.name}" />
     </div>
     <article class="detail-panel">
       <p class="category-name">${getCategoryName(menu.categoryId)}</p>
