@@ -8,6 +8,9 @@ const menu = window.CafeUtils.getMenuById(params.get("id"));
 const getCategoryName = (categoryId) =>
   window.CafeData.categories.find((category) => category.id === categoryId)?.name || "메뉴";
 
+const fallbackImage =
+  "https://upload.wikimedia.org/wikipedia/commons/9/9f/Caffe_Latte_cup.jpg";
+
 const updateCartCount = () => {
   cartCount.textContent = window.CafeUtils.getCartCount();
 };
@@ -20,7 +23,9 @@ const renderDetail = () => {
   }
 
   detailContent.innerHTML = `
-    <div class="menu-visual" style="background-image: linear-gradient(145deg, rgba(255, 216, 232, 0.16), rgba(142, 53, 93, 0.22)), url('${menu.image}')" role="img" aria-label="${menu.name}"></div>
+    <div class="menu-visual">
+      <img src="${menu.image || fallbackImage}" alt="${menu.name}" />
+    </div>
     <article class="detail-panel">
       <p class="category-name">${getCategoryName(menu.categoryId)}</p>
       <h1>${menu.name}</h1>
@@ -56,6 +61,11 @@ const bindOrderEvents = () => {
   const increaseButton = document.querySelector("#increaseButton");
   const addButton = document.querySelector("#addButton");
   const feedback = document.querySelector("#feedback");
+  const visualImage = document.querySelector(".menu-visual img");
+
+  visualImage.addEventListener("error", () => {
+    visualImage.src = fallbackImage;
+  });
 
   const setQuantity = (value) => {
     const quantity = Math.min(Math.max(Number(value) || 1, 1), 20);
