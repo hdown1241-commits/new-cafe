@@ -62,25 +62,6 @@ const readOrders = () => {
   }
 };
 
-const getHonorific = () => {
-  const gender = window.CafeUtils.getCurrentUser()?.gender;
-  if (gender === "princess") return "공주님";
-  if (gender === "prince") return "왕자님";
-  return "주인님";
-};
-
-const getRandomOrderLine = () => {
-  const honorific = getHonorific();
-  const lines = [
-    `${honorific}, 주문이 반짝반짝 준비되고 있어요.`,
-    `${honorific}을 위한 달콤한 시간이 곧 도착합니다.`,
-    `맛있어지는 주문을 준비할게요, ${honorific}!`,
-    `오늘도 new-cafe에서 행복한 한 잔 되세요, ${honorific}.`,
-  ];
-
-  return lines[Math.floor(Math.random() * lines.length)];
-};
-
 const createOrder = () => {
   const cart = window.CafeUtils.readCart();
   if (cart.length === 0) return null;
@@ -109,7 +90,7 @@ const createOrder = () => {
     status: "preparing",
     pickupName: window.CafeUtils.getCurrentUser()?.name || "임재현",
     items: cart.map((item) => ({ ...item })),
-    memo: getRandomOrderLine(),
+    memo: "앱에서 결제 완료",
   };
 
   localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify([order, ...readOrders()]));

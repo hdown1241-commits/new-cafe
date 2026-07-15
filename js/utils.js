@@ -200,11 +200,10 @@ const getCurrentUser = () => {
 
 const isLoggedIn = () => Boolean(getCurrentUser()?.email);
 
-const login = ({ name, email, gender }) => {
+const login = ({ name, email }) => {
   const user = {
     name: name || "\uc784\uc7ac\ud604",
     email: email || "limjh@example.com",
-    gender: gender || "guest",
     loggedInAt: new Date().toISOString(),
   };
   localStorage.setItem(CAFE_AUTH_STORAGE_KEY, JSON.stringify(user));
