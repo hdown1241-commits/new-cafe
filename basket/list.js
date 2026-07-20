@@ -1,6 +1,7 @@
 window.CafeUtils.requireAuth();
 
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
+const SELECTED_ORDER_STORAGE_KEY = "new-cafe-selected-order-id";
 
 const basketItems = document.querySelector("#basketItems");
 const basketLayout = document.querySelector(".basket-layout");
@@ -137,6 +138,7 @@ checkoutButton.addEventListener("click", () => {
   if (!order) return;
 
   renderBasket();
+  sessionStorage.setItem(SELECTED_ORDER_STORAGE_KEY, order.id);
   window.location.href = `../orders/detail.html?id=${encodeURIComponent(order.id)}`;
 });
 

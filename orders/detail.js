@@ -1,6 +1,7 @@
 window.CafeUtils.requireAuth();
 
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
+const SELECTED_ORDER_STORAGE_KEY = "new-cafe-selected-order-id";
 
 const orderDetail = document.querySelector("#orderDetail");
 const notFoundMessage = document.querySelector("#notFoundMessage");
@@ -74,7 +75,12 @@ const getOrderTotal = (order) =>
   order.items.reduce((total, item) => total + item.price * item.quantity, 0);
 
 const params = new URLSearchParams(window.location.search);
-const order = readOrders().find((item) => item.id === params.get("id"));
+const requestedOrderId = params.get("id") || sessionStorage.getItem(SELECTED_ORDER_STORAGE_KEY);
+const order = readOrders().find((item) => String(item.id) === String(requestedOrderId));
+
+if (order) {
+  sessionStorage.setItem(SELECTED_ORDER_STORAGE_KEY, order.id);
+}
 
 const renderOrder = () => {
   if (!order) {

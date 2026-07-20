@@ -1,6 +1,7 @@
 window.CafeUtils.requireAuth();
 
 const ORDERS_STORAGE_KEY = "new-cafe-orders";
+const SELECTED_ORDER_STORAGE_KEY = "new-cafe-selected-order-id";
 
 const orderList = document.querySelector("#orderList");
 const emptyMessage = document.querySelector("#emptyMessage");
@@ -111,7 +112,7 @@ const renderOrders = () => {
           </div>
           <div class="order-actions">
             <span class="order-price">${window.CafeUtils.formatPrice(getOrderTotal(order))}</span>
-            <a class="detail-link" href="./detail.html?id=${order.id}">상세 보기</a>
+            <a class="detail-link" data-order-id="${order.id}" href="./detail.html?id=${encodeURIComponent(order.id)}">상세 보기</a>
           </div>
         </article>
       `
@@ -125,6 +126,13 @@ const updateCartCount = () => {
 
 statusFilter.addEventListener("change", () => {
   renderOrders();
+});
+
+orderList.addEventListener("click", (event) => {
+  const detailLink = event.target.closest(".detail-link[data-order-id]");
+  if (!detailLink) return;
+
+  sessionStorage.setItem(SELECTED_ORDER_STORAGE_KEY, detailLink.dataset.orderId);
 });
 
 renderSummary();
